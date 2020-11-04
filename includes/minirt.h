@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/02 16:12:38 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/03 22:57:24 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              MACROS
 */
-# define KEY_ESC		65307
-# define MSG_QUIT		"\nExiting miniRT. À bientôt !\n\n"
+# define RT_INFO	"RAcl"
+
+# define KEY_ESC	65307
+
+# define ERR_01		"Uh-oh! Unable to initialize MinilibX. Please try again\n"
+# define ERR_02		"Please provide a valid .rt file. Duh!\n"
+# define MSG_QUIT	"\nExiting miniRT. À bientôt !\n\n"
 
 
 /*
@@ -77,7 +82,7 @@ typedef struct		s_resol
 {
 	int				x_width;
 	int				y_height;
-}					t_reso;
+}					t_resol;
 
 typedef struct		s_amb_li
 {
@@ -106,9 +111,10 @@ typedef struct		s_light
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              FUNCTION PROTOTYPES
 */
-void	pixel_put(t_img *img, int x, int y, int color);
 int		deal_key(int key, void *param);
 void	win_close(t_mlx *mlx);
+void	error_msg(char *msg, t_mlx *mlx);
+void	pixel_put(t_img *img, int x, int y, int color);
 
 // !!! APAGAR !!! TEST FUNCTIONS
 void	test_put_heart(t_img *img, int offset_x, int offset_y, int ratio);
