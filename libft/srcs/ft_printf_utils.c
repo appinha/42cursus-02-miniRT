@@ -6,13 +6,13 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 15:24:53 by apuchill          #+#    #+#             */
-/*   Updated: 2020/10/31 12:37:24 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/05 16:22:28 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_strchr_01(char *s, char c)
+int			ft_strchr_01(char *s, char c)
 {
 	int i;
 
@@ -25,13 +25,13 @@ int		ft_strchr_01(char *s, char c)
 	return (0);
 }
 
-void	ft_putchar_len(char c, int *len)
+void		ft_putchar_len(char c, int *len)
 {
 	write(1, &c, 1);
 	(*len)++;
 }
 
-void	ft_putcstr_len(char *s, int *len, int size)
+void		ft_putcstr_len(char *s, int *len, int size)
 {
 	int i;
 
