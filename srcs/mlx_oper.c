@@ -6,23 +6,14 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/03 19:28:10 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/05 22:10:08 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	error_msg(char *msg, t_mlx *mlx)
-{
-	ft_printf("%s", msg);
-	if (mlx)
-		mlx_destroy_window(mlx->ptr, mlx->win);
-	exit(0);
-}
-
 int		deal_key(int key, void *param)
 {
-	//ft_putnbr(key);
 	if (key == 65307)
 		win_close(param);
 	return (0);
@@ -30,8 +21,8 @@ int		deal_key(int key, void *param)
 
 void	win_close(t_mlx *mlx)
 {
-	ft_printf("%s", MSG_QUIT);
 	mlx_destroy_window(mlx->ptr, mlx->win);
+	ft_printf("%s", MSG_QUIT);
 	exit(0);
 }
 

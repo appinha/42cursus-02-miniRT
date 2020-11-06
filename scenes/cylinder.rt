@@ -1,5 +1,6 @@
 # Resolution
 R 1080 720
+#R 800 600
 
 # Ambient lighting
 A 0.2 255,255,255

@@ -1,0 +1,14 @@
+000 No arguments. Duh! Please provide at least a scene description file name (*.rt) as first argument.
+001 Too many arguments. Duh! Please provide up to 2 arguments - scene description file name (*.rt) (mandatory), save option.
+002 Uh-oh! Unable to initialize MinilibX. Please try again.
+
+100 Scene description file doesn't have '.rt' extension. Duh! Please provide a valid file name.
+110 Multiple values for scene's Resolution. Duh! Please provide a unique value in the scene description file (*.rt).
+111 Too many values for scene's Resolution. Duh! Please provide only 2 values (width and height, in this order) in the scene description file (*.rt).
+112 Invalid value(s) for scene's Resolution. Duh! Please provide valid value(s) in the scene description file (*.rt).
+120 Multiple values for scene's Ambient Light. Duh! Please provide a unique value in the scene description file (*.rt).
+121 Too many values for scene's Ambient Light. Duh! Please provide only 2 values (ratio and RGB, in this order) in the scene description file (*.rt).
+122 Invalid value for scene's Ambient Light ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
+123 Invalid value(s) for scene's Ambient Light RGB. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+900 Uh-oh! Unable to allocate memory (malloc). Please try again (and maybe defrag your computer).

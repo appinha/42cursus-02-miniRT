@@ -6,13 +6,13 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2020/11/03 19:17:30 by apuchill         ###   ########.fr        #
+#    Updated: 2020/11/05 22:10:38 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= clang
-#CFLAGS		= -Wall -Wextra -Werror
-CFLAGS		=
+CFLAGS		= -Wall -Wextra -Werror
+#CFLAGS		=
 RM			= /bin/rm -f
 
 NAME		= minirt
@@ -24,7 +24,7 @@ MLX_FLAGS	= -lbsd -lmlx -lXext -lX11
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 SRC_DIR		= srcs/
-SRC_F		= tests.c main.c mlx_oper.c utils_1.c
+SRC_F		= tests.c main.c errors.c mlx_oper.c get_scene.c utils_1.c
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR		= obj/
