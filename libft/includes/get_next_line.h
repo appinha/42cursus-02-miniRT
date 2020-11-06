@@ -6,28 +6,24 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/18 20:31:54 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/03 17:43:54 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/05 16:20:09 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              HEADERS
 */
-
 # include "libft.h"
 # include <limits.h>
-
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              MACROS
 */
-
 # define READL_OK		1
 # define EOF_RCHD		0
 # define ERR_HPND		-1
@@ -39,16 +35,13 @@
 
 # ifdef __linux__
 #  define OPEN_MAX		1024
-#  define ARG_MAX		sysconf(_SC_ARG_MAX)
+#  define ARG_MAX		2097152
 # endif
-
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              FUNCTION PROTOTYPES
 */
-
 int		get_next_line(int fd, char **line);
-
 
 #endif

@@ -6,29 +6,25 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 15:12:29 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/01 23:15:39 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/05 16:18:14 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              HEADERS
 */
-
 # include "libft.h"
 # include <stdarg.h>
 # include <stdint.h>
-
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              MACROS
 */
-
 # define FLAGS		"-+#0 "
 # define ALL_FL		"-+#0 *.0123456789lh"
 # define FSPECS		"cspdiuxX%onfge"
@@ -37,7 +33,6 @@
 # define HEXALOW	"0123456789abcdef"
 # define HEXAUPP	"0123456789ABCDEF"
 # define OCTAL		"01234567"
-
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -134,7 +129,6 @@ union			u_dbl
 	t_dbl	bits;
 }				u_double_bit;
 
-
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              FUNCTION PROTOTYPES
@@ -198,6 +192,5 @@ long double		ft_fmod(long double n, long double mod);
 ** FILE: ft_ftoa_rnd.c
 */
 char			*ft_ftoa_rnd(long double n, short int dec_len, short int rnd);
-
 
 #endif
