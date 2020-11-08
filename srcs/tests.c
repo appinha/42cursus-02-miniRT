@@ -56,3 +56,15 @@ void	test_put_heart(t_img *img, int offset_x, int offset_y, int ratio)
 		y += ratio;
 	}
 }
+
+void	test_put_mult_hearts(t_scene *scene, t_img *img, int offset_x, int offset_y, int ratio)
+{
+	while ((offset_x + 10 + ratio * 7) < scene->resol.x &&
+			(offset_y + 10 + ratio * 6) < scene->resol.y)
+	{
+		test_put_heart(img, offset_x, offset_y, ratio);
+		offset_x *= 1.9;
+		offset_y *= 1.8;
+		ratio++;
+	}
+}

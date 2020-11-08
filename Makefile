@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2020/11/05 22:10:38 by apuchill         ###   ########.fr        #
+#    Updated: 2020/11/07 18:45:01 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MLX_FLAGS	= -lbsd -lmlx -lXext -lX11
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 SRC_DIR		= srcs/
-SRC_F		= tests.c main.c errors.c mlx_oper.c get_scene.c utils_1.c
+SRC_F		= tests.c main.c errors.c mlx_oper.c get_scene.c get_scene_aux.c utils_1.c
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR		= obj/

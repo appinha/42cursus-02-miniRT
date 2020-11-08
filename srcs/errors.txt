@@ -1,14 +1,48 @@
 000 No arguments. Duh! Please provide at least a scene description file name (*.rt) as first argument.
-001 Too many arguments. Duh! Please provide up to 2 arguments - scene description file name (*.rt) (mandatory), save option.
+
+001 Too many arguments. Duh! Please provide up to 2 arguments - a mandatory scene description file name (*.rt), save option (--save).
+
 002 Uh-oh! Unable to initialize MinilibX. Please try again.
 
+
 100 Scene description file doesn't have '.rt' extension. Duh! Please provide a valid file name.
-110 Multiple values for scene's Resolution. Duh! Please provide a unique value in the scene description file (*.rt).
-111 Too many values for scene's Resolution. Duh! Please provide only 2 values (width and height, in this order) in the scene description file (*.rt).
+
+110 Multiple entries for scene's Resolution. Duh! Please provide a unique entry in the scene description file (*.rt).
+
+111 Too many or not enough values for scene's Resolution. Duh! Please provide exactly 2 values (width and height, in this order) in the scene description file (*.rt).
+
 112 Invalid value(s) for scene's Resolution. Duh! Please provide valid value(s) in the scene description file (*.rt).
-120 Multiple values for scene's Ambient Light. Duh! Please provide a unique value in the scene description file (*.rt).
-121 Too many values for scene's Ambient Light. Duh! Please provide only 2 values (ratio and RGB, in this order) in the scene description file (*.rt).
+
+120 Multiple entries for scene's Ambient Light. Duh! Please provide a unique entry in the scene description file (*.rt).
+
+121 Too many or not enough values for scene's Ambient Light. Duh! Please provide exactly 2 values - ratio and RGB color, in this order - in the scene description file (*.rt).
+
 122 Invalid value for scene's Ambient Light ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
-123 Invalid value(s) for scene's Ambient Light RGB. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+123 Invalid value(s) for scene's Ambient Light RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+130 Too many or not enough values for scene's camera(s). Duh! Please provide exactly 3 values - x, y, z coordinates of the view point, 3D normalized orientation vector and FOV (horizontal field of view) in degrees, in this order - in the scene description file (*.rt).
+
+131 Invalid value for scene's camera(s) coordinates of the view point. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+
+132 Invalid value for scene's camera(s) 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
+
+133 Invalid value for scene's camera(s) FOV (horizontal field of view). Duh! Please provide a valid value - in degrees, ranging from 0 to 180 - in the scene description file (*.rt).
+
+140 Too many or not enough values for scene's light(s). Duh! Please provide exactly 3 values - x, y, z coordinates of the light point, the light brightness ratio and RGB color - in the scene description file (*.rt).
+
+141 Invalid value for scene's light(s) coordinates of the light point. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+
+142 Invalid value for scene's light(s) brightness ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
+
+143 Invalid value for scene's light(s) RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+150 150
+
+151 151
+
+152 152
+
+153 153
 
 900 Uh-oh! Unable to allocate memory (malloc). Please try again (and maybe defrag your computer).

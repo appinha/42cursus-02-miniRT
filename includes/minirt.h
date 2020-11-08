@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/05 21:58:28 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/08 00:22:27 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct		s_tuple
 	double			x;
 	double			y;
 	double			z;
-	int				w;
+	//int				w;
 }					t_tuple;
 
 /*
@@ -84,7 +84,7 @@ typedef struct		s_amb_li
 typedef struct		s_cam
 {
 	t_tuple			coord;
-	t_tuple			ori;
+	t_tuple			normal;
 	int				fov;
 	struct s_cam	*next;
 }					t_cam;
@@ -101,7 +101,6 @@ typedef struct		s_sphere
 {
 	t_tuple			coord;
 	double			diam;
-	double			radius;
 	t_rgb			rgb;
 	struct s_sphere	*next;
 }					t_sphere;
@@ -109,7 +108,7 @@ typedef struct		s_sphere
 typedef struct		s_plane
 {
 	t_tuple			coord;
-	double			ori;
+	t_tuple			normal;
 	t_rgb			rgb;
 	struct s_plane	*next;
 }					t_plane;
@@ -117,7 +116,7 @@ typedef struct		s_plane
 typedef struct		s_square
 {
 	t_tuple			coord;
-	double			ori;
+	double			normal;
 	double			size;
 	t_rgb			rgb;
 	struct s_square	*next;
@@ -126,7 +125,7 @@ typedef struct		s_square
 typedef struct		s_cylind
 {
 	t_tuple			coord;
-	double			ori;
+	double			normal;
 	double			diam;
 	double			height;
 	t_rgb			rgb;
@@ -148,11 +147,11 @@ typedef struct		s_qtys
 	int				amb_li;
 	int				cam;
 	int				light;
-	int				sp;
-	int				pl;
-	int				sq;
-	int				cy;
-	int				tr;
+	int				sphere;
+	int				plane;
+	int				square;
+	int				cylind;
+	int				triang;
 }					t_qtys;
 
 typedef struct		s_scene
@@ -164,11 +163,11 @@ typedef struct		s_scene
 	t_amb_li		amb_li;
 	t_cam			*cam;
 	t_light			*light;
-	t_sphere		*sp;
-	t_plane			*pl;
-	t_square		*sq;
-	t_cylind		*cy;
-	t_triang		*tr;
+	t_sphere		*sphere;
+	t_plane			*plane;
+	t_square		*square;
+	t_cylind		*cylind;
+	t_triang		*triang;
 	t_qtys			qtys;
 }					t_scene;
 
@@ -186,18 +185,43 @@ void				pixel_put(t_img *img, int x, int y, int color);
 /*
 ** File: get_scene.c
 */
-int					get_rgb(char *str, t_rgb *rgb);
 void				get_scene_resol(t_scene *scene);
 void				get_scene_amb_li(t_scene *scene);
+void				get_scene_cam(t_scene *scene);
+void				get_scene_light(t_scene *scene);
+void				get_scene_sphere(t_scene *scene);
+void				get_scene_plane(t_scene *scene);
+/*
+** File: get_scene_aux.c
+*/
+void				scene_line_split(t_scene *scene, short int qty,
+						char *msg_nbr);
+void				get_rgb(t_scene *scene, char *str, t_rgb *rgb,
+						char *msg_nbr);
+void				get_tuple(t_scene *scene, char *str, t_tuple *tuple,
+						char *msg_nbr);
+void				get_int(t_scene *scene, char *str, int *n,
+						char *msg_nbr);
+void				get_float(t_scene *scene, char *str, double *n,
+						char *msg_nbr);
+void				get_ratio(t_scene *scene, char *str, double *n,
+						char *msg_nbr);
+void				get_normal(t_scene *scene, char *str, t_tuple *tuple,
+						char *msg_nbr);
 /*
 ** File: utils_1.c
 */
-void				*malloc_ver(size_t size, t_mlx *mlx);
+void				*malloc_ver(size_t size, t_scene *scene, t_mlx *mlx);
+int					ft_str_isint(char *str);
+int					ft_str_isfloat(char *str);
 int					ft_isrgb(int n);
 int					ft_isratio(double n);
+int					ft_isnormal(t_tuple normal);
 
 // !!! APAGAR !!! TEST FUNCTIONS
 void				test_put_heart(t_img *img, int offset_x, int offset_y,
 							int ratio);
+void				test_put_mult_hearts(t_scene *scene, t_img *img,
+							int offset_x, int offset_y, int ratio);
 
 #endif
