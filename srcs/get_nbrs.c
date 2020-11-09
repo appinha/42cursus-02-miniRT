@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_1.c                                          :+:      :+:    :+:   */
+/*   get_nbrs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 16:29:22 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/07 01:52:36 by appinha          ###   ########.fr       */
+/*   Created: 2020/11/08 19:38:39 by appinha           #+#    #+#             */
+/*   Updated: 2020/11/08 19:54:37 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	*malloc_ver(size_t size, t_scene *scene, t_mlx *mlx)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (ptr == NULL)
-		error_msg("900", scene, mlx);
-	return (ptr);
-}
 
 int		ft_str_isint(char *str)
 {
@@ -50,25 +40,23 @@ int		ft_str_isfloat(char *str)
 	return (1);
 }
 
-int		ft_isrgb(int n)
+void	get_int(t_scene *scene, char *str, int *n, char *msg_nbr)
 {
-	if (n >= 0 && n <= 255)
-		return (1);
-	return (0);
+	if (ft_str_isint(str) == 0)
+		error_msg(msg_nbr, scene, 0);
+	*n = ft_atoi(str);
 }
 
-int		ft_isratio(double n)
+void	get_float(t_scene *scene, char *str, double *n, char *msg_nbr)
 {
-	if (n >= 0.0 && n <= 1.0)
-		return (1);
-	return (0);
+	if (ft_str_isfloat(str) == 0)
+		error_msg(msg_nbr, scene, 0);
+	*n = ft_atof(str);
 }
 
-int		ft_isnormal(t_tuple normal)
+void	get_ratio(t_scene *scene, char *str, double *n, char *msg_nbr)
 {
-	if (normal.x >= -1.0 && normal.x <= 1.0 &&
-			normal.y >= -1.0 && normal.y <= 1.0 &&
-			normal.z >= -1.0 && normal.z <= 1.0)
-		return (1);
-	return (0);
+	get_float(scene, str, n, msg_nbr);
+	if (!((*n) >= 0.0 && (*n) <= 1.0))
+		error_msg(msg_nbr, scene, 0);
 }

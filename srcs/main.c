@@ -6,18 +6,19 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/08 00:22:07 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/08 20:24:14 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	print_get_scene_info(t_scene *scene)
+void	print_triage_scene_info(t_scene *scene)
 {
-	int			i;
-	t_cam		*ptr_cam;
-	t_light		*ptr_light;
-	t_sphere	*ptr_sphere;
+	int		i;
+	t_elem	*ptr_cam;
+	t_elem	*ptr_light;
+	t_elem	*ptr_sphere;
+	t_elem	*ptr_plane;
 
 	ft_printf("\n	• GET SCENE INFO •\n");
 	ft_printf("Resolution:  %i   %i\n", scene->resol.x, scene->resol.y);
@@ -56,10 +57,21 @@ void	print_get_scene_info(t_scene *scene)
 		ptr_sphere = ptr_sphere->next;
 		i++;
 	}
+	i = 1;
+	ptr_plane = scene->plane;
+	while (ptr_plane != NULL)
+	{
+		ft_printf("Plane %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
+				ptr_plane->coord.x, ptr_plane->coord.y, ptr_plane->coord.z,
+				ptr_plane->diam,
+				ptr_plane->rgb.r, ptr_plane->rgb.g, ptr_plane->rgb.b);
+		ptr_plane = ptr_plane->next;
+		i++;
+	}
 	ft_printf("\n");
 }
 
-void	get_scene_info(t_scene *scene)
+void	triage_scene_info(t_scene *scene)
 {
 	while (get_next_line(scene->fd, &scene->line) > 0)
 	{
@@ -76,14 +88,14 @@ void	get_scene_info(t_scene *scene)
 		if (ft_strncmp(scene->line, "pl", 2) == 0)
 			get_scene_plane(scene);
 		if (ft_strncmp(scene->line, "sq", 2) == 0)
-			ft_printf("%s\n", scene->line);
+			get_scene_square(scene);
 		if (ft_strncmp(scene->line, "cy", 2) == 0)
-			ft_printf("%s\n", scene->line);
+			get_scene_cylind(scene);
 		if (ft_strncmp(scene->line, "tr", 2) == 0)
-			ft_printf("%s\n", scene->line);
+			get_scene_triang(scene);
 	}
 	free(scene->line);
-	print_get_scene_info(scene);
+	print_triage_scene_info(scene);
 }
 
 void	init_scene(t_scene *scene)
@@ -115,7 +127,7 @@ void	parse_rt_file(char *file, t_scene *scene)
 		scene->fd = open(file, O_RDONLY);
 		if (scene->fd > 2)
 		{
-			get_scene_info(scene);
+			triage_scene_info(scene);
 			close(scene->fd);
 		}
 	}

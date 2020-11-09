@@ -7,42 +7,79 @@
 
 100 Scene description file doesn't have '.rt' extension. Duh! Please provide a valid file name.
 
-110 Multiple entries for scene's Resolution. Duh! Please provide a unique entry in the scene description file (*.rt).
+110 Multiple entries for Resolution. Duh! Please provide a unique entry in the scene description file (*.rt).
 
-111 Too many or not enough values for scene's Resolution. Duh! Please provide exactly 2 values (width and height, in this order) in the scene description file (*.rt).
+111 Too many or not enough values for Resolution. Duh! Please provide exactly 2 values (width and height, in this order) in the scene description file (*.rt).
 
-112 Invalid value(s) for scene's Resolution. Duh! Please provide valid value(s) in the scene description file (*.rt).
+112 Invalid value(s) for Resolution. Duh! Please provide valid value(s)  - positive integers - in the scene description file (*.rt).
 
-120 Multiple entries for scene's Ambient Light. Duh! Please provide a unique entry in the scene description file (*.rt).
+120 Multiple entries for Ambient Light. Duh! Please provide a unique entry in the scene description file (*.rt).
 
-121 Too many or not enough values for scene's Ambient Light. Duh! Please provide exactly 2 values - ratio and RGB color, in this order - in the scene description file (*.rt).
+121 Too many or not enough values for Ambient Light. Duh! Please provide exactly 2 values - ratio and RGB color, in this order - in the scene description file (*.rt).
 
-122 Invalid value for scene's Ambient Light ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
+122 Invalid value for Ambient Light ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
 
-123 Invalid value(s) for scene's Ambient Light RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+123 Invalid value(s) for Ambient Light's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-130 Too many or not enough values for scene's camera(s). Duh! Please provide exactly 3 values - x, y, z coordinates of the view point, 3D normalized orientation vector and FOV (horizontal field of view) in degrees, in this order - in the scene description file (*.rt).
+130 Too many or not enough values for Camera. Duh! Please provide exactly 3 values - x, y, z coordinates of the view point, 3D normalized orientation vector and FOV (horizontal field of view) in degrees, in this order - in the scene description file (*.rt).
 
-131 Invalid value for scene's camera(s) coordinates of the view point. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+131 Invalid value for Camera's coordinates of the view point. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
 
-132 Invalid value for scene's camera(s) 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
+132 Invalid value for Camera's 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
 
-133 Invalid value for scene's camera(s) FOV (horizontal field of view). Duh! Please provide a valid value - in degrees, ranging from 0 to 180 - in the scene description file (*.rt).
+133 Invalid value for Camera's FOV (horizontal field of view). Duh! Please provide a valid value - in degrees, ranging from 0 to 180 - in the scene description file (*.rt).
 
-140 Too many or not enough values for scene's light(s). Duh! Please provide exactly 3 values - x, y, z coordinates of the light point, the light brightness ratio and RGB color - in the scene description file (*.rt).
+140 Too many or not enough values for Light. Duh! Please provide exactly 3 values - x, y, z coordinates of the light point, the light brightness ratio and RGB color - in the scene description file (*.rt).
 
-141 Invalid value for scene's light(s) coordinates of the light point. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+141 Invalid value for Light's coordinates of the light point. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
 
-142 Invalid value for scene's light(s) brightness ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
+142 Invalid value for Light's brightness ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
 
-143 Invalid value for scene's light(s) RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+143 Invalid value for Light's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-150 150
+150 Too many or not enough values for Sphere. Duh! Please provide exactly 3 values - x, y, z coordinates of the sphere's center, its diameter and RGB color - in the scene description file (*.rt).
 
-151 151
+151 Invalid value for Sphere's coordinates. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
 
-152 152
+152 Invalid value for Sphere's diameter. Duh! Please provide valid value(s) - positive integer - in the scene description file (*.rt).
 
-153 153
+153 Invalid value for Sphere's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+160 Too many or not enough values for Plane. Duh! Please provide exactly 3 values - x, y, z coordinates, 3D normalized orientation vector and RGB color - in the scene description file (*.rt).
+
+161 Invalid value for Plane's coordinates. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+
+162 Invalid value for Plane's 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
+
+163 Invalid value for Plane's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+170 Too many or not enough values for Square. Duh! Please provide exactly 4 values - x, y, z coordinates of its center, 3D normalized orientation vector, its side size and RGB color - in the scene description file (*.rt).
+
+171 Invalid value for Square's coordinates. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+
+172 Invalid value for Square's 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
+
+173 Invalid value for Square's side size. Duh! Please provide valid value(s) - positive integer - in the scene description file (*.rt).
+
+174 Invalid value for Square's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+180 Too many or not enough values for Cylinder. Duh! Please provide exactly 5 values - x, y, z coordinates, 3D normalized orientation vector, its diameter, its height and RGB color - in the scene description file (*.rt).
+
+181 Invalid value for Cylinder's coordinates. Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+
+182 Invalid value for Cylinder's 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
+
+183 Invalid value for Cylinder's diameter. Duh! Please provide valid value(s) - positive integer - in the scene description file (*.rt).
+
+184 Invalid value for Cylinder's height. Duh! Please provide valid value(s) - positive integer - in the scene description file (*.rt).
+
+185 Invalid value for Cylinder's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
+190 Too many or not enough values for Triangle. Duh! Please provide exactly 4 values - x, y, z coordinates of 3 points and RGB color - in the scene description file (*.rt).
+
+191 Invalid value for Triangle's coordinates of point(s). Duh! Please provide valid value(s) - in the form of x, y, z integers - in the scene description file (*.rt).
+
+192 Invalid value for Triangle's RGB color. Duh! Please provide valid value(s) - in the form of '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+
 
 900 Uh-oh! Unable to allocate memory (malloc). Please try again (and maybe defrag your computer).

@@ -6,7 +6,7 @@
 #    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2020/11/07 18:45:01 by appinha          ###   ########.fr        #
+#    Updated: 2020/11/08 19:57:54 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,11 @@ MLX_FLAGS	= -lbsd -lmlx -lXext -lX11
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 SRC_DIR		= srcs/
-SRC_F		= tests.c main.c errors.c mlx_oper.c get_scene.c get_scene_aux.c utils_1.c
+SRC_F		= main.c errors.c mlx_oper.c \
+				get_scene.c get_scene_objs.c get_scene_aux.c \
+				get_nbrs.c get_coords.c get_rgb.c \
+				utils.c \
+				tests.c
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
 
 OBJ_DIR		= obj/

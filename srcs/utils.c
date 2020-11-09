@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_scene_aux.c                                    :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/07 18:45:07 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/08 19:43:48 by appinha          ###   ########.fr       */
+/*   Created: 2020/10/30 16:29:22 by apuchill          #+#    #+#             */
+/*   Updated: 2020/11/08 19:53:51 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	scene_line_split(t_scene *scene, short int qty, char *msg_nbr)
+void	*malloc_ver(size_t size, t_scene *scene, t_mlx *mlx)
 {
-	scene->split = ft_split(scene->line, ' ');
-	if (ft_strlen_2(scene->split) != (size_t)qty)
-		error_msg(msg_nbr, scene, 0);
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (ptr == NULL)
+		error_msg("900", scene, mlx);
+	return (ptr);
 }
 
-void	lstadd_front_elem(t_elem **lst, t_elem *new, int *qty)
+int		ft_isnormal(t_tuple normal)
 {
-	new->next = NULL;
-	if ((*qty) == 0)
-		(*lst) = new;
-	else
-	{
-		while ((*lst)->next != NULL)
-			(*lst) = (*lst)->next;
-		(*lst)->next = new;
-	}
-	(*qty)++;
+	if (normal.x >= -1.0 && normal.x <= 1.0 &&
+			normal.y >= -1.0 && normal.y <= 1.0 &&
+			normal.z >= -1.0 && normal.z <= 1.0)
+		return (1);
+	return (0);
 }
