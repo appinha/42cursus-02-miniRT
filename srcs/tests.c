@@ -1,5 +1,64 @@
 #include "minirt.h"
 
+void	print_triage_scene_info(t_scene *scene)
+{
+	int		i;
+	t_elem	*ptr_cam;
+	t_elem	*ptr_light;
+	t_elem	*ptr_sphere;
+	t_elem	*ptr_plane;
+
+	ft_printf("\n	• GET SCENE INFO •\n");
+	ft_printf("Resolution:  %i   %i\n", scene->resol.x, scene->resol.y);
+	ft_printf("Ambient Light:  %.1f   %i,%i,%i\n", scene->amb_li.ratio,
+				scene->amb_li.rgb.r, scene->amb_li.rgb.g, scene->amb_li.rgb.b);
+	i = 1;
+	ptr_cam = scene->cam;
+	while (ptr_cam != NULL)
+	{
+		ft_printf("Camera %i:  %.1f,%.1f,%.1f   %.0f,%.0f,%.0f   %i\n", i,
+				ptr_cam->coord.x, ptr_cam->coord.y, ptr_cam->coord.z,
+				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
+				ptr_cam->fov);
+		ptr_cam = ptr_cam->next;
+		i++;
+	}
+	i = 1;
+	ptr_light = scene->light;
+	while (ptr_light != NULL)
+	{
+		ft_printf("Light %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
+				ptr_light->coord.x, ptr_light->coord.y, ptr_light->coord.z,
+				ptr_light->ratio,
+				ptr_light->rgb.r, ptr_light->rgb.g, ptr_light->rgb.b);
+		ptr_light = ptr_light->next;
+		i++;
+	}
+	i = 1;
+	ptr_sphere = scene->sphere;
+	while (ptr_sphere != NULL)
+	{
+		ft_printf("Sphere %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
+				ptr_sphere->coord.x, ptr_sphere->coord.y, ptr_sphere->coord.z,
+				ptr_sphere->diam,
+				ptr_sphere->rgb.r, ptr_sphere->rgb.g, ptr_sphere->rgb.b);
+		ptr_sphere = ptr_sphere->next;
+		i++;
+	}
+	i = 1;
+	ptr_plane = scene->plane;
+	while (ptr_plane != NULL)
+	{
+		ft_printf("Plane %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
+				ptr_plane->coord.x, ptr_plane->coord.y, ptr_plane->coord.z,
+				ptr_plane->diam,
+				ptr_plane->rgb.r, ptr_plane->rgb.g, ptr_plane->rgb.b);
+		ptr_plane = ptr_plane->next;
+		i++;
+	}
+	ft_printf("\n");
+}
+
 void	test_put_heart(t_img *img, int offset_x, int offset_y, int ratio)
 {
 	int		img_heart[6][7] = {

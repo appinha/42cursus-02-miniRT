@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/08 19:53:15 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/19 18:45:41 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void				get_scene_triang(t_scene *scene);
 /*
 ** File: get_scene_aux.c
 */
+int					ft_isvalidchar(char c);
 void				scene_line_split(t_scene *scene, short int qty,
 						char *msg_nbr);
 void				lstadd_front_elem(t_elem **lst, t_elem *new, int *qty);
@@ -187,5 +188,6 @@ void				test_put_heart(t_img *img, int offset_x, int offset_y,
 							int ratio);
 void				test_put_mult_hearts(t_scene *scene, t_img *img,
 							int offset_x, int offset_y, int ratio);
+void				print_triage_scene_info(t_scene *scene);
 
 #endif
