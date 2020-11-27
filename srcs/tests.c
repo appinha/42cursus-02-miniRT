@@ -5,8 +5,8 @@ void	print_triage_scene_info(t_scene *scene)
 	int		i;
 	t_elem	*ptr_cam;
 	t_elem	*ptr_light;
-	t_elem	*ptr_sphere;
-	t_elem	*ptr_plane;
+	t_elem	*ptr_sp;
+	t_elem	*ptr_pl;
 
 	ft_printf("\n	• GET SCENE INFO •\n");
 	ft_printf("Resolution:  %i   %i\n", scene->resol.x, scene->resol.y);
@@ -16,7 +16,7 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_cam = scene->cam;
 	while (ptr_cam != NULL)
 	{
-		ft_printf("Camera %i:  %.1f,%.1f,%.1f   %.0f,%.0f,%.0f   %i\n", i,
+		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i\n", i,
 				ptr_cam->coord.x, ptr_cam->coord.y, ptr_cam->coord.z,
 				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
 				ptr_cam->fov);
@@ -27,7 +27,7 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_light = scene->light;
 	while (ptr_light != NULL)
 	{
-		ft_printf("Light %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
+		ft_printf("Light %i:  %.0f,%.0f,%.0f   %.1f   %i,%i,%i\n", i,
 				ptr_light->coord.x, ptr_light->coord.y, ptr_light->coord.z,
 				ptr_light->ratio,
 				ptr_light->rgb.r, ptr_light->rgb.g, ptr_light->rgb.b);
@@ -35,25 +35,25 @@ void	print_triage_scene_info(t_scene *scene)
 		i++;
 	}
 	i = 1;
-	ptr_sphere = scene->sphere;
-	while (ptr_sphere != NULL)
+	ptr_sp = scene->sp;
+	while (ptr_sp != NULL)
 	{
-		ft_printf("Sphere %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
-				ptr_sphere->coord.x, ptr_sphere->coord.y, ptr_sphere->coord.z,
-				ptr_sphere->diam,
-				ptr_sphere->rgb.r, ptr_sphere->rgb.g, ptr_sphere->rgb.b);
-		ptr_sphere = ptr_sphere->next;
+		ft_printf("Sphere %i:  %.0f,%.0f,%.0f   %.1f   %i,%i,%i\n", i,
+				ptr_sp->coord.x, ptr_sp->coord.y, ptr_sp->coord.z,
+				ptr_sp->diam,
+				ptr_sp->rgb.r, ptr_sp->rgb.g, ptr_sp->rgb.b);
+		ptr_sp = ptr_sp->next;
 		i++;
 	}
 	i = 1;
-	ptr_plane = scene->plane;
-	while (ptr_plane != NULL)
+	ptr_pl = scene->pl;
+	while (ptr_pl != NULL)
 	{
-		ft_printf("Plane %i:  %.1f,%.1f,%.1f   %.1f   %i,%i,%i\n", i,
-				ptr_plane->coord.x, ptr_plane->coord.y, ptr_plane->coord.z,
-				ptr_plane->diam,
-				ptr_plane->rgb.r, ptr_plane->rgb.g, ptr_plane->rgb.b);
-		ptr_plane = ptr_plane->next;
+		ft_printf("Plane %i:  %.0f,%.0f,%.0f   %.1f   %i,%i,%i\n", i,
+				ptr_pl->coord.x, ptr_pl->coord.y, ptr_pl->coord.z,
+				ptr_pl->diam,
+				ptr_pl->rgb.r, ptr_pl->rgb.g, ptr_pl->rgb.b);
+		ptr_pl = ptr_pl->next;
 		i++;
 	}
 	ft_printf("\n");

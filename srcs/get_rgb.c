@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:36:57 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/08 19:37:30 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/27 16:31:55 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int		ft_isrgb(int n)
 	return (0);
 }
 
-void	get_rgb(t_scene *scene, char *str, t_rgb *rgb, char *msg_nbr)
+t_rgb	get_rgb(t_scene *scene, char *str, char *msg_nbr)
 {
+	t_rgb	rgb;
 	char	**split;
 
 	split = ft_split(str, ',');
@@ -30,11 +31,12 @@ void	get_rgb(t_scene *scene, char *str, t_rgb *rgb, char *msg_nbr)
 		ft_split_free(split);
 		error_msg(msg_nbr, scene, 0);
 	}
-	rgb->r = ft_atoi(split[0]);
-	rgb->g = ft_atoi(split[1]);
-	rgb->b = ft_atoi(split[2]);
+	rgb.r = ft_atoi(split[0]);
+	rgb.g = ft_atoi(split[1]);
+	rgb.b = ft_atoi(split[2]);
 	ft_split_free(split);
-	if (ft_isrgb(rgb->r) == 0 || ft_isrgb(rgb->g) == 0 ||
-			ft_isrgb(rgb->b) == 0)
+	if (ft_isrgb(rgb.r) == 0 || ft_isrgb(rgb.g) == 0 ||
+			ft_isrgb(rgb.b) == 0)
 		error_msg(msg_nbr, scene, 0);
+	return (rgb);
 }

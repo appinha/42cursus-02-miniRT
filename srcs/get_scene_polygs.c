@@ -1,79 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_scene_objs.c                                   :+:      :+:    :+:   */
+/*   get_scene_polygs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:44:38 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/08 19:55:29 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/27 17:11:07 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	get_scene_sphere(t_scene *scene)
+void	get_scene_4_sp(t_scene *scene, t_elem **new)
 {
-	t_elem	*sphere_new;
-
-	scene_line_split(scene, 4, "150");
-	sphere_new = malloc_ver(sizeof(t_elem), scene, 0);
-	get_tuple(scene, scene->split[1], &sphere_new->coord, "151");
-	get_float(scene, scene->split[2], &sphere_new->diam, "152");
-	if (!(sphere_new->diam > 0))
-		error_msg("152", scene, 0);
-	get_rgb(scene, scene->split[3], &sphere_new->rgb, "153");
-	lstadd_front_elem(&scene->sphere, sphere_new, &scene->qtys.sphere);
+	(*new)->coord = get_coord(scene, scene->split[1], "142");
+	(*new)->diam = get_size(scene, scene->split[2], "145");
+	(*new)->rgb = get_rgb(scene, scene->split[3], "144");
 }
 
-void	get_scene_plane(t_scene *scene)
+void	get_scene_5_pl(t_scene *scene, t_elem **new)
 {
-	t_elem	*plane_new;
-
-	scene_line_split(scene, 4, "160");
-	plane_new = malloc_ver(sizeof(t_elem), scene, 0);
-	get_tuple(scene, scene->split[1], &plane_new->coord, "161");
-	get_normal(scene, scene->split[2], &plane_new->normal, "162");
-	get_rgb(scene, scene->split[3], &plane_new->rgb, "163");
-	lstadd_front_elem(&scene->plane, plane_new, &scene->qtys.plane);
+	(*new)->coord = get_coord(scene, scene->split[1], "152");
+	(*new)->normal = get_normal(scene, scene->split[2], "152");
+	(*new)->rgb = get_rgb(scene, scene->split[3], "154");
 }
 
-void	get_scene_square(t_scene *scene)
+void	get_scene_6_sq(t_scene *scene, t_elem **new)
 {
-	t_elem	*square_new;
-
-	scene_line_split(scene, 5, "170");
-	square_new = malloc_ver(sizeof(t_elem), scene, 0);
-	get_tuple(scene, scene->split[1], &square_new->coord, "171");
-	get_normal(scene, scene->split[2], &square_new->normal, "172");
-	get_float(scene, scene->split[3], &square_new->height, "173");
-	get_rgb(scene, scene->split[4], &square_new->rgb, "174");
-	lstadd_front_elem(&scene->square, square_new, &scene->qtys.square);
+	(*new)->coord = get_coord(scene, scene->split[1], "162");
+	(*new)->normal = get_normal(scene, scene->split[2], "162");
+	(*new)->height = get_size(scene, scene->split[3], "165");
+	(*new)->rgb = get_rgb(scene, scene->split[4], "164");
 }
 
-void	get_scene_cylind(t_scene *scene)
+void	get_scene_7_cy(t_scene *scene, t_elem **new)
 {
-	t_elem	*cylind_new;
-
-	scene_line_split(scene, 6, "180");
-	cylind_new = malloc_ver(sizeof(t_elem), scene, 0);
-	get_tuple(scene, scene->split[1], &cylind_new->coord, "181");
-	get_normal(scene, scene->split[2], &cylind_new->normal, "182");
-	get_float(scene, scene->split[3], &cylind_new->diam, "183");
-	get_float(scene, scene->split[3], &cylind_new->height, "184");
-	get_rgb(scene, scene->split[4], &cylind_new->rgb, "185");
-	lstadd_front_elem(&scene->cylind, cylind_new, &scene->qtys.cylind);
+	(*new)->coord = get_coord(scene, scene->split[1], "172");
+	(*new)->normal = get_normal(scene, scene->split[2], "173");
+	(*new)->diam = get_size(scene, scene->split[3], "175");
+	(*new)->height = get_size(scene, scene->split[3], "176");
+	(*new)->rgb = get_rgb(scene, scene->split[4], "174");
 }
 
-void	get_scene_triang(t_scene *scene)
+void	get_scene_8_tr(t_scene *scene, t_elem **new)
 {
-	t_elem	*triang_new;
-
-	scene_line_split(scene, 5, "190");
-	triang_new = malloc_ver(sizeof(t_elem), scene, 0);
-	get_tuple(scene, scene->split[2], &triang_new->p1, "191");
-	get_tuple(scene, scene->split[2], &triang_new->p2, "191");
-	get_tuple(scene, scene->split[2], &triang_new->p3, "191");
-	get_rgb(scene, scene->split[4], &triang_new->rgb, "192");
-	lstadd_front_elem(&scene->triang, triang_new, &scene->qtys.triang);
+	(*new)->p1 = get_coord(scene, scene->split[2], "182");
+	(*new)->p2 = get_coord(scene, scene->split[2], "182");
+	(*new)->p3 = get_coord(scene, scene->split[2], "182");
+	(*new)->rgb = get_rgb(scene, scene->split[4], "184");
 }

@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/19 18:45:26 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/27 20:24:37 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,44 @@
 
 void	triage_scene_info(t_scene *scene)
 {
-	while (get_next_line(scene->fd, &scene->line) > 0)
+	static t_arr_sc	ft_scene[9] = {get_scene_0_resol, get_scene_1_amb_li,
+		get_scene_2_cam, get_scene_3_light, get_scene_4_sp, get_scene_5_pl,
+		get_scene_6_sq, get_scene_7_cy, get_scene_8_tr};
+	static char		*elem[9] = {"R ", "A ", "c ", "l ",
+								"sp", "pl", "sq", "cy", "tr"};
+	int				id;
+	int				ret;
+
+	ret = 1;
+	while (ret == 1)
 	{
-		if (ft_strncmp(scene->line, "R", 1) == 0)
-			get_scene_resol(scene);
-		if (ft_strncmp(scene->line, "A", 1) == 0)
-			get_scene_amb_li(scene);
-		if (ft_strncmp(scene->line, "c", 1) == 0)
-			get_scene_cam(scene);
-		if (ft_strncmp(scene->line, "l", 1) == 0)
-			get_scene_light(scene);
-		if (ft_strncmp(scene->line, "sp", 2) == 0)
-			get_scene_sphere(scene);
-		if (ft_strncmp(scene->line, "pl", 2) == 0)
-			get_scene_plane(scene);
-		if (ft_strncmp(scene->line, "sq", 2) == 0)
-			get_scene_square(scene);
-		if (ft_strncmp(scene->line, "cy", 2) == 0)
-			get_scene_cylind(scene);
-		if (ft_strncmp(scene->line, "tr", 2) == 0)
-			get_scene_triang(scene);
+		ret = get_next_line(scene->fd, &scene->line);
+		id = 0;
+		while (id < 9 && ft_strncmp(scene->line, elem[id], 2))
+			id++;
+		if (id < 9)
+			get_scene_elem(scene, id, *ft_scene[id]);
+		free(scene->line);
 	}
-	free(scene->line);
+	if (scene->qtys[0] == 0 || scene->qtys[1] == 0 || scene->qtys[2] == 0)
+		error_msg("013", scene, 0);
 	print_triage_scene_info(scene);
 }
 
 void	parse_rt_file(char *file, t_scene *scene)
 {
-	char	*ext;
-	int		cmp;
-
-	ext = ft_substr(file, ft_strlen(file) - 3, 3);
-	cmp = ft_strcmp(ext, ".rt");
-	free(ext);
-	if (cmp == 0)
+	if (ft_strnrcmp(file, ".rt", 3) == 0)
 	{
-		//init_scene(scene);
-		scene->fd = open(file, O_RDONLY);
-		if (scene->fd > 2)
+		if ((scene->fd = open(file, O_RDONLY)) > 2)
 		{
 			triage_scene_info(scene);
 			close(scene->fd);
 		}
+		else
+			error_msg("011", 0, 0);
 	}
 	else
-		error_msg("100", 0, 0);
+		error_msg("010", 0, 0);
 }
 
 int		main(int argc, char *argv[])

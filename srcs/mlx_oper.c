@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_oper.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/05 22:10:08 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/27 17:21:27 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		deal_key(int key, void *param)
 {
-	if (key == 65307)
+	if (key == KEY_ESC)
 		win_close(param);
 	return (0);
 }

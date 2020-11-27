@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 18:45:07 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/09 09:49:59 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/27 17:16:41 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,35 @@ int		ft_isvalidchar(char c)
 	return (0);
 }
 
-void	scene_line_split(t_scene *scene, short int qty, char *msg_nbr)
+void	scene_check_qty(t_scene *scene, short int elem_id, short int err_id)
 {
-	int		i;
+	char	*msg_nbr;
+
+	get_error_msg_nbr(1, elem_id, err_id, &msg_nbr);
+	if (scene->qtys[elem_id] > 0)
+		error_msg(msg_nbr, scene, 0);
+}
+
+void	scene_line_split(t_scene *scene, short int elem_id, short int err_id)
+{
+	static int	info_qty[9] = {3, 3, 4, 4, 4, 4, 5, 6, 5};
+	char		*msg_nbr;
+	int			i;
 
 	i = 0;
 	while (scene->line[i])
 	{
 		if (ft_isvalidchar(scene->line[i]) == 0)
-			error_msg("101", scene, 0);
+			error_msg("012", scene, 0);
 		i++;
 	}
 	scene->split = ft_split(scene->line, ' ');
-	if (ft_strlen_2(scene->split) != (size_t)qty)
+	get_error_msg_nbr(1, elem_id, err_id, &msg_nbr);
+	if (ft_strlen_2(scene->split) != (size_t)info_qty[elem_id])
 		error_msg(msg_nbr, scene, 0);
 }
 
-void	lstadd_front_elem(t_elem **lst, t_elem *new, int *qty)
+void	lstadd_front_elem(t_elem **lst, t_elem *new, short int *qty)
 {
 	new->next = NULL;
 	if ((*qty) == 0)

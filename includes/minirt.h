@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/19 18:45:41 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/27 17:17:46 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ typedef struct		s_rgb
 	int				b;
 }					t_rgb;
 
-typedef struct		s_tuple
+typedef struct		s_coord
 {
 	double			x;
 	double			y;
 	double			z;
-	//int				w;
-}					t_tuple;
+}					t_coord;
 
 /*
 **                              RT file - Scene description
@@ -77,11 +76,11 @@ typedef struct		s_resol
 
 typedef struct		s_elem
 {
-	t_tuple			coord;
-	t_tuple			normal;
-	t_tuple			p1;
-	t_tuple			p2;
-	t_tuple			p3;
+	t_coord			coord;
+	t_coord			normal;
+	t_coord			p1;
+	t_coord			p2;
+	t_coord			p3;
 	t_rgb			rgb;
 	int				fov;
 	double			ratio;
@@ -89,19 +88,6 @@ typedef struct		s_elem
 	double			height;
 	struct s_elem	*next;
 }					t_elem;
-
-typedef struct		s_qtys
-{
-	int				resol;
-	int				amb_li;
-	int				cam;
-	int				light;
-	int				sphere;
-	int				plane;
-	int				square;
-	int				cylind;
-	int				triang;
-}					t_qtys;
 
 typedef struct		s_scene
 {
@@ -112,13 +98,15 @@ typedef struct		s_scene
 	t_elem			amb_li;
 	t_elem			*cam;
 	t_elem			*light;
-	t_elem			*sphere;
-	t_elem			*plane;
-	t_elem			*square;
-	t_elem			*cylind;
-	t_elem			*triang;
-	t_qtys			qtys;
+	t_elem			*sp;
+	t_elem			*pl;
+	t_elem			*sq;
+	t_elem			*cy;
+	t_elem			*tr;
+	short int		qtys[9];
 }					t_scene;
+
+typedef void		(*t_arr_sc)(t_scene *, t_elem **);
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -129,55 +117,65 @@ typedef struct		s_scene
 */
 int					deal_key(int key, void *param);
 void				win_close(t_mlx *mlx);
-void				error_msg(char *msg_nbr, t_scene *scene, t_mlx *mlx);
 void				pixel_put(t_img *img, int x, int y, int color);
+/*
+** File: errors.c
+*/
+void				error_msg(char *msg_nbr, t_scene *scene, t_mlx *mlx);
+void				get_error_msg_nbr(short int categ, short int elem_id,
+						short int err_id, char **msg_nbr);
 /*
 ** File: get_scene.c
 */
-void				get_scene_resol(t_scene *scene);
-void				get_scene_amb_li(t_scene *scene);
-void				get_scene_cam(t_scene *scene);
-void				get_scene_light(t_scene *scene);
+void				get_scene_elem(t_scene *scene, short int elem_id,
+						void (*ft)(t_scene *, t_elem **));
+void				get_scene_0_resol(t_scene *scene, t_elem **new);
+void				get_scene_1_amb_li(t_scene *scene, t_elem **new);
+void				get_scene_2_cam(t_scene *scene, t_elem **new);
+void				get_scene_3_light(t_scene *scene, t_elem **new);
 /*
 ** File: get_scene_objs.c
 */
-void				get_scene_sphere(t_scene *scene);
-void				get_scene_plane(t_scene *scene);
-void				get_scene_square(t_scene *scene);
-void				get_scene_cylind(t_scene *scene);
-void				get_scene_triang(t_scene *scene);
+void				get_scene_4_sp(t_scene *scene, t_elem **new);
+void				get_scene_5_pl(t_scene *scene, t_elem **new);
+void				get_scene_6_sq(t_scene *scene, t_elem **new);
+void				get_scene_7_cy(t_scene *scene, t_elem **new);
+void				get_scene_8_tr(t_scene *scene, t_elem **new);
 /*
 ** File: get_scene_aux.c
 */
 int					ft_isvalidchar(char c);
-void				scene_line_split(t_scene *scene, short int qty,
-						char *msg_nbr);
-void				lstadd_front_elem(t_elem **lst, t_elem *new, int *qty);
+void				scene_check_qty(t_scene *scene, short int elem_id,
+						short int err_id);
+void				scene_line_split(t_scene *scene, short int elem_id,
+						short int err_id);
+void				lstadd_front_elem(t_elem **lst, t_elem *new,
+						short int *qty);
 /*
-** File: get_nbrs.c
+** File: get_int.c
 */
 int					ft_str_isint(char *str);
+int					get_int(t_scene *scene, char *str, char *msg_nbr);
+int					get_posint(t_scene *scene, char *str, char *msg_nbr);
+int					get_fov(t_scene *scene, char *str, char *msg_nbr);
+/*
+** File: get_float.c
+*/
 int					ft_str_isfloat(char *str);
-void				get_int(t_scene *scene, char *str, int *n,
-						char *msg_nbr);
-void				get_float(t_scene *scene, char *str, double *n,
-						char *msg_nbr);
-void				get_ratio(t_scene *scene, char *str, double *n,
-						char *msg_nbr);
+double				get_float(t_scene *scene, char *str, char *msg_nbr);
+double				get_ratio(t_scene *scene, char *str, char *msg_nbr);
+double				get_size(t_scene *scene, char *str, char *msg_nbr);
 /*
 ** File: get_rgb.c
 */
 int					ft_isrgb(int n);
-void				get_rgb(t_scene *scene, char *str, t_rgb *rgb,
-						char *msg_nbr);
+t_rgb				get_rgb(t_scene *scene, char *str, char *msg_nbr);
 /*
 ** File: get_coords.c
 */
-void				get_tuple(t_scene *scene, char *str, t_tuple *tuple,
-						char *msg_nbr);
-int					ft_isnormal(t_tuple normal);
-void				get_normal(t_scene *scene, char *str, t_tuple *tuple,
-						char *msg_nbr);
+int					ft_isnormal(t_coord normal);
+t_coord				get_coord(t_scene *scene, char *str, char *msg_nbr);
+t_coord				get_normal(t_scene *scene, char *str, char *msg_nbr);
 /*
 ** File: utils_1.c
 */

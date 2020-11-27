@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/24 20:15:20 by apuchill          #+#    #+#              #
-#    Updated: 2020/11/05 13:35:50 by apuchill         ###   ########.fr        #
+#    Updated: 2020/11/26 18:48:51 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_F	= ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_ispunct.c ft_islower.c ft_isupper.c ft_tolower.c ft_toupper.c \
 			ft_bzero.c ft_memset.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 			ft_memchr.c ft_memcmp.c ft_strdup.c ft_strndup.c ft_calloc.c \
-			ft_strlen.c ft_strlen_2.c ft_strchr.c ft_strrchr.c \
+			ft_strlen.c ft_strlen_2.c ft_strchr.c ft_strrchr.c ft_strnrcmp.c \
 			ft_strstr.c ft_strnstr.c ft_strcpy.c ft_strncpy.c ft_strlcpy.c \
 			ft_strcmp.c ft_strncmp.c ft_strcat.c ft_strncat.c ft_strlcat.c \
 			ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_strmapi.c \

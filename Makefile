@@ -6,12 +6,12 @@
 #    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2020/11/08 23:35:32 by appinha          ###   ########.fr        #
+#    Updated: 2020/11/27 16:52:09 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 #CFLAGS		=
 RM			= /bin/rm -f
 
@@ -26,7 +26,7 @@ INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 SRC_DIR		= srcs/
 SRC_F		= main.c errors.c mlx_oper.c \
 				get_scene.c get_scene_polygs.c get_scene_aux.c \
-				get_nbrs.c get_coords.c get_rgb.c \
+				get_int.c get_float.c get_coords.c get_rgb.c \
 				utils.c \
 				tests.c
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
@@ -62,6 +62,10 @@ tests:
 
 rt:			tests all
 			@./minirt "scenes/cylinder.rt"
+
+norm:
+			~/.norminette/norminette.rb */*.c */*.h
+			#~/.norminette/norminette.rb */*.c */*.h */*/*.c */*/*.h
 
 bonus:		all
 

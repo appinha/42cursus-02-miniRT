@@ -6,14 +6,24 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:39:31 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/08 19:51:16 by appinha          ###   ########.fr       */
+/*   Updated: 2020/11/27 17:12:45 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	get_tuple(t_scene *scene, char *str, t_tuple *tuple, char *msg_nbr)
+int		ft_isnormal(t_coord normal)
 {
+	if (normal.x >= -1.0 && normal.x <= 1.0 &&
+			normal.y >= -1.0 && normal.y <= 1.0 &&
+			normal.z >= -1.0 && normal.z <= 1.0)
+		return (1);
+	return (0);
+}
+
+t_coord	get_coord(t_scene *scene, char *str, char *msg_nbr)
+{
+	t_coord	coord;
 	char	**split;
 
 	split = ft_split(str, ',');
@@ -23,15 +33,19 @@ void	get_tuple(t_scene *scene, char *str, t_tuple *tuple, char *msg_nbr)
 		ft_split_free(split);
 		error_msg(msg_nbr, scene, 0);
 	}
-	tuple->x = ft_atof(split[0]);
-	tuple->y = ft_atof(split[1]);
-	tuple->z = ft_atof(split[2]);
+	coord.x = ft_atof(split[0]);
+	coord.y = ft_atof(split[1]);
+	coord.z = ft_atof(split[2]);
 	ft_split_free(split);
+	return (coord);
 }
 
-void	get_normal(t_scene *scene, char *str, t_tuple *tuple, char *msg_nbr)
+t_coord	get_normal(t_scene *scene, char *str, char *msg_nbr)
 {
-	get_tuple(scene, str, tuple, msg_nbr);
-	if (ft_isnormal(*tuple) == 0)
+	t_coord	coord;
+
+	coord = get_coord(scene, str, msg_nbr);
+	if (ft_isnormal(coord) == 0)
 		error_msg(msg_nbr, scene, 0);
+	return (coord);
 }

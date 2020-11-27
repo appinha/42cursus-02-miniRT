@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:29:28 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/05 16:21:15 by apuchill         ###   ########.fr       */
+/*   Updated: 2020/11/26 19:29:50 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 		size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_strnrcmp(const char *s1, const char *s2, size_t n);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
