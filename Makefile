@@ -6,16 +6,19 @@
 #    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2020/11/27 16:52:09 by appinha          ###   ########.fr        #
+#    Updated: 2021/01/26 11:48:35 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-#CFLAGS		=
-RM			= /bin/rm -f
-
 NAME		= minirt
+
+DIR_SRCS	= srcs
+DIR_OBJS	= objs
+DIRS		= main errors scene tests
+SRCS_DIRS	= $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
+OBJS_DIRS	= $(foreach dir, $(DIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
+SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
+OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 
 LIBFT		= $(LIBFT_DIR)libft.a
 LIBFT_DIR	= libft/
@@ -23,20 +26,14 @@ LIB_FLAGS	= -L $(LIBFT_DIR) -lft
 MLX_FLAGS	= -lbsd -lmlx -lXext -lX11
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
-SRC_DIR		= srcs/
-SRC_F		= main.c errors.c mlx_oper.c \
-				get_scene.c get_scene_polygs.c get_scene_aux.c \
-				get_int.c get_float.c get_coords.c get_rgb.c \
-				utils.c \
-				tests.c
-SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
-
-OBJ_DIR		= obj/
-OBJS		= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
+CC			= clang
+CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+#CFLAGS		=
+RM			= /bin/rm -f
 
 
-$(OBJ_DIR)%.o :	$(SRC_DIR)%.c
-			@mkdir -p $(OBJ_DIR)
+$(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
+			@mkdir -p $(DIR_OBJS) $(OBJS_DIRS)
 			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all:		$(NAME)
@@ -61,10 +58,10 @@ tests:
 			@$(RM) $(OBJS) $(NAME)
 
 rt:			tests all
-			@./minirt "scenes/cylinder.rt"
+			./minirt "scenes/cylinder.rt"
 
 norm:
-			~/.norminette/norminette.rb */*.c */*.h
+			~/.norminette/norminette.rb srcs/*/*.c */*.h
 			#~/.norminette/norminette.rb */*.c */*.h */*/*.c */*/*.h
 
 bonus:		all

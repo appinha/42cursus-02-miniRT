@@ -6,11 +6,12 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 16:51:35 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/27 16:51:53 by appinha          ###   ########.fr       */
+/*   Updated: 2021/01/26 11:11:42 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "errors.h"
+#include "scene.h"
 
 int		ft_str_isfloat(char *str)
 {
@@ -26,29 +27,29 @@ int		ft_str_isfloat(char *str)
 	return (1);
 }
 
-double	get_float(t_scene *scene, char *str, char *msg_nbr)
+double	get_float(char *str, char *code)
 {
 	if (ft_str_isfloat(str) == 0)
-		error_msg(msg_nbr, scene, 0);
+		error_msg_and_exit(code);
 	return (ft_atof(str));
 }
 
-double	get_ratio(t_scene *scene, char *str, char *msg_nbr)
+double	get_ratio(char *str, char *code)
 {
 	double	nbr;
 
-	nbr = get_float(scene, str, msg_nbr);
+	nbr = get_float(str, code);
 	if (!(nbr >= 0.0 && nbr <= 1.0))
-		error_msg(msg_nbr, scene, 0);
+		error_msg_and_exit(code);
 	return (nbr);
 }
 
-double	get_size(t_scene *scene, char *str, char *msg_nbr)
+double	get_size(char *str, char *code)
 {
 	double	nbr;
 
-	nbr = get_float(scene, str, msg_nbr);
+	nbr = get_float(str, code);
 	if (!(nbr > 0.0))
-		error_msg(msg_nbr, scene, 0);
+		error_msg_and_exit(code);
 	return (nbr);
 }

@@ -6,11 +6,12 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:38:39 by appinha           #+#    #+#             */
-/*   Updated: 2020/11/27 17:08:33 by appinha          ###   ########.fr       */
+/*   Updated: 2021/01/26 11:11:47 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "errors.h"
+#include "scene.h"
 
 int		ft_str_isint(char *str)
 {
@@ -26,29 +27,29 @@ int		ft_str_isint(char *str)
 	return (1);
 }
 
-int		get_int(t_scene *scene, char *str, char *msg_nbr)
+int		get_int(char *str, char *code)
 {
 	if (ft_str_isint(str) == 0)
-		error_msg(msg_nbr, scene, 0);
+		error_msg_and_exit(code);
 	return (ft_atoi(str));
 }
 
-int		get_posint(t_scene *scene, char *str, char *msg_nbr)
+int		get_posint(char *str, char *code)
 {
 	int		posint;
 
-	posint = get_int(scene, str, msg_nbr);
+	posint = get_int(str, code);
 	if (!(posint > 0))
-		error_msg(msg_nbr, scene, 0);
+		error_msg_and_exit(code);
 	return (posint);
 }
 
-int		get_fov(t_scene *scene, char *str, char *msg_nbr)
+int		get_fov(char *str, char *code)
 {
 	int		fov;
 
-	fov = get_int(scene, str, msg_nbr);
+	fov = get_int(str, code);
 	if (!(fov >= 0 && fov <= 180))
-		error_msg(msg_nbr, scene, 0);
+		error_msg_and_exit(code);
 	return (fov);
 }

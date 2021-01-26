@@ -1,17 +1,16 @@
-000 No arguments. Duh! Please provide at least a scene description file name (*.rt) as first argument.
+000 System error
 
-001 Too many arguments. Duh! Please provide up to 2 arguments - a mandatory scene description file name (*.rt), save option (--save).
+001 No arguments. Duh! Please provide at least a scene description file name (*.rt) as first argument.
 
-002 Uh-oh! Unable to initialize MinilibX. Please try again.
+002 Too many arguments. Duh! Please provide up to 2 arguments - mandatory: scene description file name (*.rt); optional: save option (--save); in this order.
 
+003 Incorrect save option. Please use '--save'.
 
 010 Scene description file doesn't have '.rt' extension. Duh! Please provide a valid file name.
 
-011 Uh-oh" Unable to open scene description file ('.rt' ). Please try again.
+011 Scene description file contains invalid character(s). Duh! Please check if it contains solely alphabetic and numeric (including the signal '-' and decimal separator '.') characters separated by spaces or commas (',').
 
-012 Scene description file contains invalid character(s). Duh! Please check if it contains solely alphabetic and numeric (including the signal '-' and decimal separator '.') characters separated by spaces or commas (',').
-
-013 Scene description file is missing some required information. Duh! Please check if it contains valid values for, at least, Resolution, Ambient Light and Camera.
+012 Scene description file is missing some required information. Duh! Please check if it contains valid values for, at least, Resolution, Ambient Light and Camera.
 
 # 1X0 scene_check_qty()
 

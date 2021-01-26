@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_oper.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/27 17:21:27 by appinha          ###   ########.fr       */
+/*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
+/*   Updated: 2021/01/26 11:34:54 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "errors.h"
+#include "scene.h"
 
-int		deal_key(int key, void *param)
+int		main(int argc, char *argv[])
 {
-	if (key == KEY_ESC)
-		win_close(param);
+	t_rt	rt;
+
+	if (argc < 2)
+		error_msg_and_exit("001");
+	if (argc > 3)
+		error_msg_and_exit("002");
+	if (argc == 3 && ft_strncmp(argv[2], "--save", 7) != 0)
+		error_msg_and_exit("003");
+	rt.save = (argc == 3);
+	init_scene(argv[1], &rt.scene);
+	init_mlx(&rt);
+	render_img(&rt);
+	mlx_key_hook(rt.win, deal_key, &rt);
+	mlx_loop(rt.mlx);
 	return (0);
-}
-
-void	win_close(t_mlx *mlx)
-{
-	mlx_destroy_window(mlx->ptr, mlx->win);
-	ft_printf("%s", MSG_QUIT);
-	exit(0);
-}
-
-void	pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->size + x * (img->bpp / 8));
-	*(unsigned int*)dst = color;
 }
