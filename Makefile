@@ -6,7 +6,7 @@
 #    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/01/26 11:48:35 by appinha          ###   ########.fr        #
+#    Updated: 2021/02/03 08:37:01 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ CC			= clang
 CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 #CFLAGS		=
 RM			= /bin/rm -f
+NORM		= ~/.norminette/norminette.rb
 
 
 $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
@@ -61,8 +62,13 @@ rt:			tests all
 			./minirt "scenes/cylinder.rt"
 
 norm:
-			~/.norminette/norminette.rb srcs/*/*.c */*.h
-			#~/.norminette/norminette.rb */*.c */*.h */*/*.c */*/*.h
+			@$(NORM)
+
+norm2:
+			@$(NORM) */minirt.h */errors.h */scene.h && echo ""
+			@$(NORM) srcs/main/*.c && echo ""
+			@$(NORM) srcs/errors/*.c && echo ""
+			@$(NORM) srcs/scene/*.c
 
 bonus:		all
 

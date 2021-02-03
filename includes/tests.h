@@ -10,5 +10,4 @@ void			test_put_mult_hearts(t_scene *scene, t_img *img,
 							int offset_x, int offset_y, int ratio);
 void			print_triage_scene_info(t_scene *scene);
 
-
 #endif

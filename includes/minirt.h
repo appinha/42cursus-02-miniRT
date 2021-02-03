@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/01/26 11:26:05 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/03 07:30:55 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,18 @@ typedef struct	s_rt
 	t_img		img;
 	t_scene		scene;
 }				t_rt;
+
+typedef struct	s_hit
+{
+
+}				t_hit;
+
+typedef struct	s_ray
+{
+	t_coord		orig;
+	t_coord		dir;
+	t_hit		hit;
+}				t_ray;
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-

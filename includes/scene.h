@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/01/26 11:05:34 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/03 08:44:39 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 **                              HEADERS
 */
 # include "libft.h"
-
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -61,7 +60,6 @@ typedef struct		s_elem
 
 typedef struct		s_scene
 {
-	int				fd;
 	char			*line;
 	char			**split;
 	t_resol			resol;
@@ -86,31 +84,26 @@ typedef void		(*t_arr_sc)(t_scene *, t_elem **);
 ** File: scene.c
 */
 void				init_scene(char *file, t_scene *scene);
+void				get_scene_elem(t_scene *scene, short int elem_id,
+						void (*ft)(t_scene *, t_elem **));
 /*
 ** File: get_scene_elem.c
 */
-void				get_scene_elem(t_scene *scene, short int elem_id,
-						void (*ft)(t_scene *, t_elem **));
-void				get_scene_0_resol(t_scene *scene, t_elem **new);
-void				get_scene_1_amb_li(t_scene *scene, t_elem **new);
-void				get_scene_2_cam(t_scene *scene, t_elem **new);
-void				get_scene_3_light(t_scene *scene, t_elem **new);
+void				get_0_resol(t_scene *scene, t_elem **new);
+void				get_1_amb_li(t_scene *scene, t_elem **new);
+void				get_2_cam(t_scene *scene, t_elem **new);
+void				get_3_light(t_scene *scene, t_elem **new);
 /*
 ** File: get_scene_polygs.c
 */
-void				get_scene_4_sp(t_scene *scene, t_elem **new);
-void				get_scene_5_pl(t_scene *scene, t_elem **new);
-void				get_scene_6_sq(t_scene *scene, t_elem **new);
-void				get_scene_7_cy(t_scene *scene, t_elem **new);
-void				get_scene_8_tr(t_scene *scene, t_elem **new);
+void				get_4_sp(t_scene *scene, t_elem **new);
+void				get_5_pl(t_scene *scene, t_elem **new);
+void				get_6_sq(t_scene *scene, t_elem **new);
+void				get_7_cy(t_scene *scene, t_elem **new);
+void				get_8_tr(t_scene *scene, t_elem **new);
 /*
 ** File: get_scene_aux.c
 */
-int					ft_isvalidchar(char c);
-void				scene_check_qty(t_scene *scene, short int elem_id,
-						short int err_id);
-void				scene_line_split(t_scene *scene, short int elem_id,
-						short int err_id);
 void				lstadd_front_elem(t_elem **lst, t_elem *new,
 						short int *qty);
 /*
