@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 13:29:59 by apuchill          #+#    #+#             */
-/*   Updated: 2020/11/06 15:45:46 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 15:01:07 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,30 @@
 */
 
 #include "libft.h"
+#include <math.h>
+
+#include <stdio.h>
 
 double	ft_atof(const char *str)
 {
-	double	res;
-	char	**split;
+	double	int_part;
+	double	dec_part;
+	double	sign;
+	int		i;
 
-	split = ft_split(str, '.');
-	res = (double)ft_atoi(split[0]);
-	if (ft_strlen_2(split) > 1)
-		res += (double)ft_atoi(split[1]) / ((double)ft_strlen(split[1]) * 10);
-	ft_split_free(split);
-	return (res);
+	int_part = 0.0;
+	dec_part = 0.0;
+	sign = 1.0;
+	if (*str == '+' || *str == '-')
+		if (*str++ == '-')
+			sign = -1.0;
+	while (ft_isdigit(*str))
+		int_part = int_part * 10 + (*str++ - '0');
+	i = -1;
+	if (*str == '.' && *str++)
+	{
+		while (ft_isdigit(*str))
+			dec_part += (pow(10, i--) * (*str++ - '0'));
+	}
+	return (sign * (int_part + dec_part));
 }
