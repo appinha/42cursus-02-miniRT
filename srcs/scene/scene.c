@@ -6,13 +6,12 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:17:20 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/03 08:47:13 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 09:48:27 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errors.h"
 #include "scene.h"
-#include "tests.h"
 
 void		init_scene(char *file, t_scene *scene)
 {
@@ -40,14 +39,14 @@ void		init_scene(char *file, t_scene *scene)
 	close(fd);
 	if (scene->qtys[0] == 0 || scene->qtys[1] == 0 || scene->qtys[2] == 0)
 		error_msg_and_exit("012");
-	print_triage_scene_info(scene);
+	get_cam_info(scene, scene->cam);
 }
 
 static int	ft_isvalidchar(char c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||
-		(c >= '0' && c <= '9') || (c == '-') || (c == '.') || (c == ',') ||
-		(c == ' ') || (c == '\n'))
+		(c >= '0' && c <= '9') || (c == '-') || (c == '+') || (c == '.') ||
+		(c == ',') || (c == ' ') || (c == '\n'))
 		return (1);
 	return (0);
 }
@@ -75,33 +74,39 @@ void		get_scene_elem(t_scene *scene, short int elem_id,
 {
 	t_elem	*new;
 
-	new = 0;
+	new = NULL;
 	if (elem_id < 2)
 	{
 		if (scene->qtys[elem_id] > 0)
 			error_msg_and_exit(get_error_code(1, elem_id, 0));
 	}
 	else
+	{
 		new = malloc_ver(sizeof(t_elem));
+		new->next = NULL;
+	}
 	scene_line_split(scene, elem_id, 1);
 	(*ft)(scene, &new);
 	if (elem_id >= 2)
-		lstadd_front_elem(&scene->cam + elem_id - 2, new,
-							&scene->qtys[elem_id]);
+		lstadd_back_elem(&scene->cam + elem_id - 2, new, &scene->qtys[elem_id]);
 	ft_split_free(scene->split);
 	scene->qtys[elem_id]++;
 }
 
-void		lstadd_front_elem(t_elem **lst, t_elem *new, short int *qty)
+void		lstadd_back_elem(t_elem **lst, t_elem *new, short int *qty)
 {
-	new->next = NULL;
-	if ((*qty) == 0)
+	t_elem	*aux;
+
+	aux = (*lst);
+	if (!new)
+		return ;
+	if (!*lst)
 		(*lst) = new;
 	else
 	{
-		while ((*lst)->next != NULL)
-			(*lst) = (*lst)->next;
-		(*lst)->next = new;
+		while (aux->next)
+			aux = aux->next;
+		aux->next = new;
 	}
 	(*qty)++;
 }

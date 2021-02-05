@@ -6,7 +6,7 @@
 #    By: appinha <appinha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/03 08:37:01 by appinha          ###   ########.fr        #
+#    Updated: 2021/02/05 08:25:47 by appinha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME		= minirt
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
-DIRS		= main errors scene tests
-SRCS_DIRS	= $(foreach dir, $(DIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
-OBJS_DIRS	= $(foreach dir, $(DIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
+SUBDIRS		= main errors scene vectors tests
+
+SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
+OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
 SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
 OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 
@@ -59,16 +60,17 @@ tests:
 			@$(RM) $(OBJS) $(NAME)
 
 rt:			tests all
-			./minirt "scenes/cylinder.rt"
+			./minirt "scenes/test.rt"
 
 norm:
 			@$(NORM)
 
 norm2:
-			@$(NORM) */minirt.h */errors.h */scene.h && echo ""
+			@$(NORM) */minirt.h */errors.h */scene.h */vectors.h && echo ""
 			@$(NORM) srcs/main/*.c && echo ""
 			@$(NORM) srcs/errors/*.c && echo ""
-			@$(NORM) srcs/scene/*.c
+			@$(NORM) srcs/scene/*.c && echo ""
+			@$(NORM) srcs/vectors/*.c
 
 bonus:		all
 

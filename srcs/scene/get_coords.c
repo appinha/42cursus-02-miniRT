@@ -6,20 +6,20 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:39:31 by appinha           #+#    #+#             */
-/*   Updated: 2021/01/26 11:10:49 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 15:17:30 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errors.h"
 #include "scene.h"
 
-int		ft_isnormal(t_coord normal)
+bool	ft_isnormal(t_coord normal)
 {
 	if (normal.x >= -1.0 && normal.x <= 1.0 &&
 			normal.y >= -1.0 && normal.y <= 1.0 &&
 			normal.z >= -1.0 && normal.z <= 1.0)
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
 t_coord	get_coord(char *str, char *code)
@@ -46,7 +46,7 @@ t_coord	get_normal(char *str, char *code)
 	t_coord	coord;
 
 	coord = get_coord(str, code);
-	if (ft_isnormal(coord) == 0)
+	if (ft_isnormal(coord) == false)
 		error_msg_and_exit(code);
 	return (coord);
 }

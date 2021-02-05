@@ -7,19 +7,23 @@ void	print_triage_scene_info(t_scene *scene)
 	t_elem	*ptr_light;
 	t_elem	*ptr_sp;
 	t_elem	*ptr_pl;
+	t_elem	*ptr_tr;
 
-	ft_printf("\n	• GET SCENE INFO •\n");
+	ft_printf("\n	• GET SCENE INFO •\n\n");
+
 	ft_printf("Resolution:  %i   %i\n", scene->resol.x, scene->resol.y);
-	ft_printf("Ambient Light:  %.1f   %i,%i,%i\n", scene->amb_li.ratio,
-				scene->amb_li.rgb.r, scene->amb_li.rgb.g, scene->amb_li.rgb.b);
+	ft_printf("Ambient Light:  %.1f   %x\n", scene->amb_li.ratio,
+				scene->amb_li.colour);
 	i = 1;
 	ptr_cam = scene->cam;
-	while (ptr_cam != NULL)
+	while (ptr_cam)
 	{
-		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i\n", i,
+		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i\
+				hor.x: %.1f\n", i,
 				ptr_cam->coord.x, ptr_cam->coord.y, ptr_cam->coord.z,
 				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
-				ptr_cam->fov);
+				ptr_cam->cam.fov,
+				ptr_cam->cam.hor.x);
 		ptr_cam = ptr_cam->next;
 		i++;
 	}
@@ -27,10 +31,10 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_light = scene->light;
 	while (ptr_light != NULL)
 	{
-		ft_printf("Light %i:  %.0f,%.0f,%.0f   %.1f   %i,%i,%i\n", i,
+		ft_printf("Light %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
 				ptr_light->coord.x, ptr_light->coord.y, ptr_light->coord.z,
 				ptr_light->ratio,
-				ptr_light->rgb.r, ptr_light->rgb.g, ptr_light->rgb.b);
+				ptr_light->colour);
 		ptr_light = ptr_light->next;
 		i++;
 	}
@@ -38,10 +42,10 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_sp = scene->sp;
 	while (ptr_sp != NULL)
 	{
-		ft_printf("Sphere %i:  %.0f,%.0f,%.0f   %.1f   %i,%i,%i\n", i,
+		ft_printf("Sphere %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
 				ptr_sp->coord.x, ptr_sp->coord.y, ptr_sp->coord.z,
 				ptr_sp->diam,
-				ptr_sp->rgb.r, ptr_sp->rgb.g, ptr_sp->rgb.b);
+				ptr_sp->colour);
 		ptr_sp = ptr_sp->next;
 		i++;
 	}
@@ -49,11 +53,23 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_pl = scene->pl;
 	while (ptr_pl != NULL)
 	{
-		ft_printf("Plane %i:  %.0f,%.0f,%.0f   %.1f   %i,%i,%i\n", i,
+		ft_printf("Plane %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
 				ptr_pl->coord.x, ptr_pl->coord.y, ptr_pl->coord.z,
 				ptr_pl->diam,
-				ptr_pl->rgb.r, ptr_pl->rgb.g, ptr_pl->rgb.b);
+				ptr_pl->colour);
 		ptr_pl = ptr_pl->next;
+		i++;
+	}
+	i = 1;
+	ptr_tr = scene->tr;
+	while (ptr_tr != NULL)
+	{
+		ft_printf("Triangle %i:  %.0f,%.0f,%.0f  %.0f,%.0f,%.0f  %.0f,%.0f,%.0f   %x\n", i,
+				ptr_tr->tr_info.p1.x, ptr_tr->tr_info.p1.y, ptr_tr->tr_info.p1.z,
+				ptr_tr->tr_info.p2.x, ptr_tr->tr_info.p2.y, ptr_tr->tr_info.p2.z,
+				ptr_tr->tr_info.p3.x, ptr_tr->tr_info.p3.y, ptr_tr->tr_info.p3.z,
+				ptr_tr->colour);
+		ptr_tr = ptr_tr->next;
 		i++;
 	}
 	ft_printf("\n");

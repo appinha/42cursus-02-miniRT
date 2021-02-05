@@ -6,30 +6,31 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 16:51:35 by appinha           #+#    #+#             */
-/*   Updated: 2021/01/26 11:11:42 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 15:02:58 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "errors.h"
 #include "scene.h"
 
-int		ft_str_isfloat(char *str)
+bool	ft_str_isfloat(char *str)
 {
 	int		i;
 
 	i = 0;
 	while (i < (int)ft_strlen(str))
 	{
-		if (!(ft_isdigit(str[i]) == 1 || str[i] == '-' || str[i] == '.'))
-			return (0);
+		if (!(ft_isdigit(str[i]) == true || str[i] == '-' || str[i] == '+' ||
+							str[i] == '.'))
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
 double	get_float(char *str, char *code)
 {
-	if (ft_str_isfloat(str) == 0)
+	if (ft_str_isfloat(str) == false)
 		error_msg_and_exit(code);
 	return (ft_atof(str));
 }

@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/03 07:30:55 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 10:45:06 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 **                              HEADERS
 */
 # include <stdbool.h>
+# include <math.h>
 # include "mlx.h"
-# include "scene.h"
 # include "libft.h"
+# include "scene.h"
+# include "vectors.h"
+
+# include <stdio.h>
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -29,6 +33,18 @@
 # define NAME		"miniRT"
 # define KEY_ESC	65307
 # define MSG_QUIT	"Exiting miniRT. À bientôt !\n\n"
+
+# define EPSILON	0.0001
+# define ALBEDO		1000
+
+typedef enum	e_type {
+	__NULL,
+	SPHERE,
+	PLANE,
+	SQUARE,
+	TRIANGLE,
+	CYLINDER
+}				t_type;
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -56,13 +72,18 @@ typedef struct	s_rt
 
 typedef struct	s_hit
 {
-
+	float		dot;
+	t_coord		coord;
+	t_coord		normal;
+	t_type		obj_type;
+	void		*obj;
+	int			colour;
 }				t_hit;
 
 typedef struct	s_ray
 {
-	t_coord		orig;
-	t_coord		dir;
+	t_coord		coord;
+	t_coord		normal;
 	t_hit		hit;
 }				t_ray;
 
@@ -71,15 +92,30 @@ typedef struct	s_ray
 **                              FUNCTION PROTOTYPES
 */
 /*
-** File: mlx_oper.c
+** FILE: mlx_oper.c
 */
 void			init_mlx(t_rt *rt);
-int				deal_key(int key, void *param);
+void			run_mlx(t_rt *rt);
 void			win_close(t_rt *rt);
-void			pixel_put(t_img *img, int x, int y, int color);
+void			pixel_put(t_img *img, int x, int y, int colour);
 /*
-** File: render_img.c
+** FILE: raytrace.c
 */
-void			render_img(t_rt *rt);
+int				raytrace(t_rt *rt, t_ray *ray);
+t_coord			ray_at(t_ray ray);
+/*
+** FILE: hit.c
+*/
+bool			hit_pl(t_ray *ray, t_elem *pl);
+/*
+** FILE: colours.c
+*/
+int				c_scale(int colour, float c);
+int				c_prod(int c1, int c2);
+int				c_add(int c1, int c2);
+/*
+** FILE: colours_light.c
+*/
+int				c_comp(t_elem *light, t_hit hit);
 
 #endif

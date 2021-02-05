@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:09:42 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/03 08:08:57 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 09:51:27 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	print_error_msg(char *code)
 	int		fd;
 	char	*msg;
 
-	if ((fd = open("srcs/errors/errors.txt", O_RDONLY)) < 0)
+	fd = open("srcs/errors/errors.txt", O_RDONLY);
+	if (fd < 0)
 		error_msg_and_exit(SYSERR);
 	while (get_next_line(fd, &msg) == 1)
 	{

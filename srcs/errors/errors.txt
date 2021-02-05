@@ -23,21 +23,21 @@
 
 101 Too many or not enough values for Resolution. Duh! Please provide exactly 2 values (width and height, in this order) in the scene description file (*.rt).
 
-111 Too many or not enough values for Ambient Light. Duh! Please provide exactly 2 values - ratio and RGB color, in this order - in the scene description file (*.rt).
+111 Too many or not enough values for Ambient Light. Duh! Please provide exactly 2 values - ratio and RGB colour, in this order - in the scene description file (*.rt).
 
 121 Too many or not enough values for Camera. Duh! Please provide exactly 3 values - x, y, z coordinates of the view point, 3D normalized orientation vector and FOV (horizontal field of view) in degrees, in this order - in the scene description file (*.rt).
 
-131 Too many or not enough values for Light. Duh! Please provide exactly 3 values - x, y, z coordinates of the light point, the light brightness ratio and RGB color - in the scene description file (*.rt).
+131 Too many or not enough values for Light. Duh! Please provide exactly 3 values - x, y, z coordinates of the light point, the light brightness ratio and RGB colour - in the scene description file (*.rt).
 
-141 Too many or not enough values for Sphere. Duh! Please provide exactly 3 values - x, y, z coordinates of the sphere's center, its diameter and RGB color - in the scene description file (*.rt).
+141 Too many or not enough values for Sphere. Duh! Please provide exactly 3 values - x, y, z coordinates of the sphere's center, its diameter and RGB colour - in the scene description file (*.rt).
 
-151 Too many or not enough values for Plane. Duh! Please provide exactly 3 values - x, y, z coordinates, 3D normalized orientation vector and RGB color - in the scene description file (*.rt).
+151 Too many or not enough values for Plane. Duh! Please provide exactly 3 values - x, y, z coordinates, 3D normalized orientation vector and RGB colour - in the scene description file (*.rt).
 
-161 Too many or not enough values for Square. Duh! Please provide exactly 4 values - x, y, z coordinates of its center, 3D normalized orientation vector, its side size and RGB color - in the scene description file (*.rt).
+161 Too many or not enough values for Square. Duh! Please provide exactly 4 values - x, y, z coordinates of its center, 3D normalized orientation vector, its side size and RGB colour - in the scene description file (*.rt).
 
-171 Too many or not enough values for Cylinder. Duh! Please provide exactly 5 values - x, y, z coordinates, 3D normalized orientation vector, its diameter, its height and RGB color - in the scene description file (*.rt).
+171 Too many or not enough values for Cylinder. Duh! Please provide exactly 5 values - x, y, z coordinates, 3D normalized orientation vector, its diameter, its height and RGB colour - in the scene description file (*.rt).
 
-181 Too many or not enough values for Triangle. Duh! Please provide exactly 4 values - x, y, z coordinates of 3 points and RGB color - in the scene description file (*.rt).
+181 Too many or not enough values for Triangle. Duh! Please provide exactly 4 values - x, y, z coordinates of 3 points and RGB colour - in the scene description file (*.rt).
 
 
 # 1X2 get_coord() - coordinates
@@ -68,21 +68,21 @@
 173 Invalid value for Cylinder's 3D normalized orientation vector. Duh! Please provide a valid value - ranging from -1.0 to 1.0 - in the scene description file (*.rt).
 
 
-# 1X4 get_rgb()
+# 1X4 get_colour()
 
-114 Invalid value(s) for Ambient Light's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+114 Invalid value(s) for Ambient Light's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-134 Invalid value for Light's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+134 Invalid value for Light's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-144 Invalid value for Sphere's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+144 Invalid value for Sphere's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-154 Invalid value for Plane's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+154 Invalid value for Plane's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-164 Invalid value for Square's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+164 Invalid value for Square's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-174 Invalid value for Cylinder's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+174 Invalid value for Cylinder's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
-184 Invalid value for Triangle's RGB color. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
+184 Invalid value for Triangle's RGB colour. Duh! Please provide valid value(s) - in the format '255,255,255', each value ranging from 0 to 255 - in the scene description file (*.rt).
 
 
 # 1X5 get_size()

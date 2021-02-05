@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 11:07:24 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/03 08:09:38 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/04 11:19:02 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 **                              FUNCTION PROTOTYPES
 */
 /*
-** File: errors.c
+** FILE: errors.c
 */
 void			error_msg_and_exit(char *code);
 char			*get_error_code(short int categ, short int elem_id,
