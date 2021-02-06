@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/05 10:31:39 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/06 15:46:22 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,33 @@ t_coord			ray_at(t_ray ray)
 	return (v_add(ray.coord, v_scale(ray.normal, ray.hit.dot)));
 }
 
+static void		iter_lst_objs(t_ray *ray, t_elem *elem, bool *ret,
+							bool (*ft)(t_ray *ray, t_elem *elem))
+{
+	while (elem)
+	{
+		*ret |= (*ft)(ray, elem);
+		elem = elem->next;
+	}
+}
+
 static bool		intersect(t_rt *rt, t_ray *ray)
 {
-	bool	hit;
+	bool				ret;
 
 	ray->hit.dot = INFINITY;
-	hit = false;
+	ret = false;
+	// if (rt->scene.sp != 0)
+	// 	iter_lst_objs(ray, rt->scene.sp, &ret, *hit_sp);
 	if (rt->scene.pl != 0)
-		hit = hit_pl(ray, rt->scene.pl);
-	return (hit);
+		iter_lst_objs(ray, rt->scene.pl, &ret, *hit_pl);
+	// if (rt->scene.sq != 0)
+	// 	iter_lst_objs(ray, rt->scene.sq, &ret, *hit_sq);
+	// if (rt->scene.tr != 0)
+	// 	iter_lst_objs(ray, rt->scene.tr, &ret, *hit_tr);
+	// if (rt->scene.cy != 0)
+	// 	iter_lst_objs(ray, rt->scene.cy, &ret, *hit_cy);
+	return (ret);
 }
 
 static bool		in_shadow(t_rt *rt, t_hit hit, t_elem *light)

@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/05 10:45:06 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/06 15:23:50 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct	s_ray
 	t_hit		hit;
 }				t_ray;
 
+typedef bool	(*t_arr_hit)(t_ray *, t_elem *);
+
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              FUNCTION PROTOTYPES
@@ -106,7 +108,11 @@ t_coord			ray_at(t_ray ray);
 /*
 ** FILE: hit.c
 */
-bool			hit_pl(t_ray *ray, t_elem *pl);
+// bool			hit_sp(t_ray *ray, t_elem *elem);
+bool			hit_pl(t_ray *ray, t_elem *elem);
+// bool			hit_sq(t_ray *ray, t_elem *elem);
+// bool			hit_tr(t_ray *ray, t_elem *elem);
+// bool			hit_cy(t_ray *ray, t_elem *elem);
 /*
 ** FILE: colours.c
 */

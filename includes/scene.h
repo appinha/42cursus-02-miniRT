@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/05 09:43:20 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 16:49:44 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ typedef struct		s_cam
 	t_coord			llc;
 }					t_cam;
 
-typedef struct		s_el_tr
+typedef struct		s_tr
 {
 	t_coord			p1;
 	t_coord			p2;
 	t_coord			p3;
 
-}					t_el_tr;
+}					t_tr;
 
 typedef struct		s_elem
 {
@@ -56,7 +56,7 @@ typedef struct		s_elem
 	double			diam;
 	double			height;
 	t_cam			cam;
-	t_el_tr			tr_info;
+	t_tr			tr;
 	struct s_elem	*next;
 }					t_elem;
 

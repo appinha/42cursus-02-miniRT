@@ -65,9 +65,9 @@ void	print_triage_scene_info(t_scene *scene)
 	while (ptr_tr != NULL)
 	{
 		ft_printf("Triangle %i:  %.0f,%.0f,%.0f  %.0f,%.0f,%.0f  %.0f,%.0f,%.0f   %x\n", i,
-				ptr_tr->tr_info.p1.x, ptr_tr->tr_info.p1.y, ptr_tr->tr_info.p1.z,
-				ptr_tr->tr_info.p2.x, ptr_tr->tr_info.p2.y, ptr_tr->tr_info.p2.z,
-				ptr_tr->tr_info.p3.x, ptr_tr->tr_info.p3.y, ptr_tr->tr_info.p3.z,
+				ptr_tr->tr.p1.x, ptr_tr->tr.p1.y, ptr_tr->tr.p1.z,
+				ptr_tr->tr.p2.x, ptr_tr->tr.p2.y, ptr_tr->tr.p2.z,
+				ptr_tr->tr.p3.x, ptr_tr->tr.p3.y, ptr_tr->tr.p3.z,
 				ptr_tr->colour);
 		ptr_tr = ptr_tr->next;
 		i++;

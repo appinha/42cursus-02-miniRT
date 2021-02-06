@@ -6,7 +6,7 @@
 /*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:44:38 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/05 08:03:09 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/05 16:49:01 by appinha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	get_7_cy(t_scene *scene, t_elem **new)
 
 void	get_8_tr(t_scene *scene, t_elem **new)
 {
-	(*new)->tr_info.p1 = get_coord(scene->split[1], "182");
-	(*new)->tr_info.p2 = get_coord(scene->split[2], "182");
-	(*new)->tr_info.p3 = get_coord(scene->split[3], "182");
+	(*new)->tr.p1 = get_coord(scene->split[1], "182");
+	(*new)->tr.p2 = get_coord(scene->split[2], "182");
+	(*new)->tr.p3 = get_coord(scene->split[3], "182");
 	(*new)->colour = get_colour(scene->split[4], "184");
 }
