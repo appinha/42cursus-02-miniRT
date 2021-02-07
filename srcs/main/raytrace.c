@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:23:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:09:34 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static bool		intersect(t_rt *rt, t_ray *ray)
 {
 	bool				ret;
 
-	ray->hit.dist = INFINITY;
+	ray->hit.time = INFINITY;
 	ret = false;
-	// if (rt->scene.sp != 0)
-	// 	iter_lst_objs(ray, rt->scene.sp, &ret, *hit_sp);
+	if (rt->scene.sp != 0)
+		iter_lst_objs(ray, rt->scene.sp, &ret, *hit_sp);
 	if (rt->scene.pl != 0)
 		iter_lst_objs(ray, rt->scene.pl, &ret, *hit_pl);
 	// if (rt->scene.sq != 0)
@@ -46,8 +46,8 @@ static bool		in_shadow(t_rt *rt, t_hit hit, t_elem *light)
 {
 	t_ray	shadow;
 
-	shadow.point = v_add(hit.point, v_scale(hit.normal, EPSILON));
-	shadow.normal = v_norm(v_sub(light->point, shadow.point));
+	shadow.p_ori = v_add(hit.point, v_scale(hit.normal, EPSILON));
+	shadow.v_dir = v_norm(v_sub(light->point, shadow.p_ori));
 	shadow.hit.obj = hit.obj;
 	return (intersect(rt, &shadow));
 }
@@ -73,7 +73,7 @@ int				raytrace(t_rt *rt, t_ray *ray)
 	return (colour);
 }
 
-t_coord			ray_at(t_ray ray)
+t_coord			get_hit_point(t_ray ray)
 {
-	return (v_add(ray.point, v_scale(ray.normal, ray.hit.dist)));
+	return (v_add(ray.p_ori, v_scale(ray.v_dir, ray.hit.time)));
 }

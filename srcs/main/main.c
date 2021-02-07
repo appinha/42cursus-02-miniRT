@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 09:23:39 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:28:48 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ static t_ray	gen_ray(t_elem *cam, float x, float y)
 {
 	t_ray	ray;
 
-	ray.point = cam->point;
-	ray.normal = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
-	ray.normal = v_norm(v_sub(v_add(ray.normal, cam->cam.llc), ray.point));
+	ray.p_ori = cam->point;
+	ray.v_dir = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
+	ray.v_dir = v_add(ray.v_dir, cam->cam.llc);
+	ray.v_dir = v_norm(v_sub(ray.v_dir, ray.p_ori));
 	ray.hit = (t_hit) {0};
 	return (ray);
 }

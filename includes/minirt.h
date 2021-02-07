@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 09:21:50 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 12:36:05 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct	s_rt
 
 typedef struct	s_hit
 {
-	float		dist;
+	float		time;
 	t_coord		point;
 	t_coord		normal;
 	t_type		obj_type;
@@ -82,8 +82,8 @@ typedef struct	s_hit
 
 typedef struct	s_ray
 {
-	t_coord		point;
-	t_coord		normal;
+	t_coord		p_ori;
+	t_coord		v_dir;
 	t_hit		hit;
 }				t_ray;
 
@@ -102,11 +102,11 @@ void			pixel_put(t_img *img, int x, int y, int colour);
 ** FILE: raytrace.c
 */
 int				raytrace(t_rt *rt, t_ray *ray);
-t_coord			ray_at(t_ray ray);
+t_coord			get_hit_point(t_ray ray);
 /*
 ** FILE: hit.c
 */
-// bool			hit_sp(t_ray *ray, t_elem *elem);
+bool			hit_sp(t_ray *ray, t_elem *elem);
 bool			hit_pl(t_ray *ray, t_elem *elem);
 // bool			hit_sq(t_ray *ray, t_elem *elem);
 // bool			hit_tr(t_ray *ray, t_elem *elem);

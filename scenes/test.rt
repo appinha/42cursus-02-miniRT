@@ -29,7 +29,7 @@ pl +0.0,+0.0,+0.0   +0.0,+1.0,+0.0   140,118,206
 ### SPHERE
 ## (origin point | diameter [>0] | colour in RGB [0,255])
 ## coord            diam   colour
-# sp +0.0,+1.0,+0.0   2.0    216,56,136
+sp +0.0,+1.0,+0.0   2.0    216,56,136
 
 ### SQUARE
 ## (origin point | orientation [-1.0,1.0] | side size [>0] | colour in RGB [0,255])
