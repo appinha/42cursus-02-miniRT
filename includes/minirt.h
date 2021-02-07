@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/06 15:23:50 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/07 09:21:50 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ typedef struct	s_rt
 
 typedef struct	s_hit
 {
-	float		dot;
-	t_coord		coord;
+	float		dist;
+	t_coord		point;
 	t_coord		normal;
 	t_type		obj_type;
 	void		*obj;
@@ -82,12 +82,10 @@ typedef struct	s_hit
 
 typedef struct	s_ray
 {
-	t_coord		coord;
+	t_coord		point;
 	t_coord		normal;
 	t_hit		hit;
 }				t_ray;
-
-typedef bool	(*t_arr_hit)(t_ray *, t_elem *);
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -119,9 +117,6 @@ bool			hit_pl(t_ray *ray, t_elem *elem);
 int				c_scale(int colour, float c);
 int				c_prod(int c1, int c2);
 int				c_add(int c1, int c2);
-/*
-** FILE: colours_light.c
-*/
 int				c_comp(t_elem *light, t_hit hit);
 
 #endif

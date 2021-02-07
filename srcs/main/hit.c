@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:48 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/06 15:23:46 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/07 09:23:35 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 
 bool	hit_pl(t_ray *ray, t_elem *elem)
 {
-	double	dot;
+	double	dist;
 	double	den;
 
 	den = v_dot(v_norm(ray->normal), elem->normal);
 	if (!den)
 		return (false);
-	dot = v_dot(v_sub(elem->coord, ray->coord), elem->normal) / den;
-	if (ray->hit.dot > dot && dot > EPSILON)
+	dist = v_dot(v_sub(elem->point, ray->point), elem->normal) / den;
+	if (ray->hit.dist > dist && dist > EPSILON)
 	{
-		ray->hit.dot = dot;
-		ray->hit.coord = ray_at(*ray);
+		ray->hit.dist = dist;
+		ray->hit.point = ray_at(*ray);
 		if (v_dot(ray->normal, elem->normal) > 0)
 			elem->normal = v_scale(elem->normal, -1);
 		ray->hit.normal = elem->normal;

@@ -3,23 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/06 15:46:22 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/07 09:23:43 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "vectors.h"
 
-t_coord			ray_at(t_ray ray)
-{
-	return (v_add(ray.coord, v_scale(ray.normal, ray.hit.dot)));
-}
-
 static void		iter_lst_objs(t_ray *ray, t_elem *elem, bool *ret,
-							bool (*ft)(t_ray *ray, t_elem *elem))
+								bool (*ft)(t_ray *ray, t_elem *elem))
 {
 	while (elem)
 	{
@@ -32,7 +27,7 @@ static bool		intersect(t_rt *rt, t_ray *ray)
 {
 	bool				ret;
 
-	ray->hit.dot = INFINITY;
+	ray->hit.dist = INFINITY;
 	ret = false;
 	// if (rt->scene.sp != 0)
 	// 	iter_lst_objs(ray, rt->scene.sp, &ret, *hit_sp);
@@ -51,8 +46,8 @@ static bool		in_shadow(t_rt *rt, t_hit hit, t_elem *light)
 {
 	t_ray	shadow;
 
-	shadow.coord = v_add(hit.coord, v_scale(hit.normal, EPSILON));
-	shadow.normal = v_norm(v_sub(light->coord, shadow.coord));
+	shadow.point = v_add(hit.point, v_scale(hit.normal, EPSILON));
+	shadow.normal = v_norm(v_sub(light->point, shadow.point));
 	shadow.hit.obj = hit.obj;
 	return (intersect(rt, &shadow));
 }
@@ -76,4 +71,9 @@ int				raytrace(t_rt *rt, t_ray *ray)
 		light = light->next;
 	}
 	return (colour);
+}
+
+t_coord			ray_at(t_ray ray)
+{
+	return (v_add(ray.point, v_scale(ray.normal, ray.hit.dist)));
 }

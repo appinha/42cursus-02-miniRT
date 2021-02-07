@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:41:37 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/05 09:48:11 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/07 09:23:48 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	get_1_amb_li(t_scene *scene, t_elem **new)
 
 void	get_2_cam(t_scene *scene, t_elem **new)
 {
-	(*new)->coord = get_coord(scene->split[1], "122");
+	(*new)->point = get_coord(scene->split[1], "122");
 	(*new)->normal = v_norm(get_normal(scene->split[2], "123"));
 	(*new)->cam.fov = get_fov(scene->split[3], "126");
 }
@@ -52,7 +52,7 @@ void	get_cam_info(t_scene *scene, t_elem *cam)
 		v = v_cross(w, u);
 		cam->cam.hor = v_scale(u, vp[0]);
 		cam->cam.ver = v_scale(v, vp[1]);
-		cam->cam.llc = v_sub(cam->coord, v_scale(cam->cam.hor, 0.5));
+		cam->cam.llc = v_sub(cam->point, v_scale(cam->cam.hor, 0.5));
 		cam->cam.llc = v_sub(cam->cam.llc, v_scale(cam->cam.ver, 0.5));
 		cam->cam.llc = v_sub(cam->cam.llc, w);
 		cam = cam->next;
@@ -61,7 +61,7 @@ void	get_cam_info(t_scene *scene, t_elem *cam)
 
 void	get_3_light(t_scene *scene, t_elem **new)
 {
-	(*new)->coord = get_coord(scene->split[1], "132");
+	(*new)->point = get_coord(scene->split[1], "132");
 	(*new)->ratio = get_ratio(scene->split[2], "136");
 	(*new)->colour = get_colour(scene->split[3], "134");
 }

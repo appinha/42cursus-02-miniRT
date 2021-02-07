@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/05 15:18:36 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/07 09:23:39 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static t_ray	gen_ray(t_elem *cam, float x, float y)
 {
 	t_ray	ray;
 
-	ray.coord = cam->coord;
+	ray.point = cam->point;
 	ray.normal = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
-	ray.normal = v_add(ray.normal, cam->cam.llc);
-	ray.normal = v_norm(v_sub(ray.normal, ray.coord));
+	ray.normal = v_norm(v_sub(v_add(ray.normal, cam->cam.llc), ray.point));
 	ray.hit = (t_hit) {0};
 	return (ray);
 }

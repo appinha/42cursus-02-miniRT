@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: appinha <appinha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/05 16:49:44 by appinha          ###   ########.fr       */
+/*   Updated: 2021/02/07 09:22:05 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct		s_tr
 
 typedef struct		s_elem
 {
-	t_coord			coord;
+	t_coord			point;
 	t_coord			normal;
 	int				colour;
 	double			ratio;

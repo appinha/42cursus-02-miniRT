@@ -20,7 +20,7 @@ void	print_triage_scene_info(t_scene *scene)
 	{
 		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i\
 				hor.x: %.1f\n", i,
-				ptr_cam->coord.x, ptr_cam->coord.y, ptr_cam->coord.z,
+				ptr_cam->point.x, ptr_cam->point.y, ptr_cam->point.z,
 				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
 				ptr_cam->cam.fov,
 				ptr_cam->cam.hor.x);
@@ -32,7 +32,7 @@ void	print_triage_scene_info(t_scene *scene)
 	while (ptr_light != NULL)
 	{
 		ft_printf("Light %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
-				ptr_light->coord.x, ptr_light->coord.y, ptr_light->coord.z,
+				ptr_light->point.x, ptr_light->point.y, ptr_light->point.z,
 				ptr_light->ratio,
 				ptr_light->colour);
 		ptr_light = ptr_light->next;
@@ -43,7 +43,7 @@ void	print_triage_scene_info(t_scene *scene)
 	while (ptr_sp != NULL)
 	{
 		ft_printf("Sphere %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
-				ptr_sp->coord.x, ptr_sp->coord.y, ptr_sp->coord.z,
+				ptr_sp->point.x, ptr_sp->point.y, ptr_sp->point.z,
 				ptr_sp->diam,
 				ptr_sp->colour);
 		ptr_sp = ptr_sp->next;
@@ -54,7 +54,7 @@ void	print_triage_scene_info(t_scene *scene)
 	while (ptr_pl != NULL)
 	{
 		ft_printf("Plane %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
-				ptr_pl->coord.x, ptr_pl->coord.y, ptr_pl->coord.z,
+				ptr_pl->point.x, ptr_pl->point.y, ptr_pl->point.z,
 				ptr_pl->diam,
 				ptr_pl->colour);
 		ptr_pl = ptr_pl->next;
