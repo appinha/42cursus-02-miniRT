@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 22:28:04 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/08 08:44:16 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,14 @@ void			pixel_put(t_img *img, int x, int y, int colour);
 ** FILE: raytrace.c
 */
 int				raytrace(t_rt *rt, t_ray *ray);
-t_coord			get_hit_point(t_ray ray);
 /*
-** FILE: hit.c
+** FILE: hit_1.c
 */
+t_coord			get_hit_point(t_ray ray);
 bool			hit_sp(t_ray *ray, t_elem *elem);
+/*
+** FILE: hit_2.c
+*/
 bool			hit_pl(t_ray *ray, t_elem *elem);
 bool			hit_polyg(t_ray *ray, t_elem *elem);
 /*

@@ -41,7 +41,7 @@ sq +2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
 ### CYLINDER
 ## (origin point | orientation [-1.0,1.0] | diameter [>0] | height [>0] | colour in RGB [0,255])
 ## coord            normal           diam   height   colour
-# cy -3.0,+0.0,+0.0   +0.0,+1.0,+0.0   1.5    1.2      255,127,127
+cy -2.2,+0.0,+1.2   +0.0,+1.0,+0.0   0.2    3.0      255,204,0
 
 ### TRIANGLE
 ## (first point | second point | third point | colour in RGB [0,255])

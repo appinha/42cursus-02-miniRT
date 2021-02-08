@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:44:38 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 22:03:14 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/08 08:54:16 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	get_7_cy(t_scene *scene, t_elem **new)
 {
 	(*new)->obj_type = CYLINDER;
 	(*new)->point = get_coord(scene->split[1], "172");
-	(*new)->normal = get_normal(scene->split[2], "173");
+	(*new)->normal = v_norm(get_normal(scene->split[2], "173"));
 	(*new)->diam = get_size(scene->split[3], "175");
-	(*new)->height = get_size(scene->split[3], "176");
-	(*new)->colour = get_colour(scene->split[4], "174");
+	(*new)->height = get_size(scene->split[4], "176");
+	(*new)->colour = get_colour(scene->split[5], "174");
 }
 
 void	get_8_tr(t_scene *scene, t_elem **new)

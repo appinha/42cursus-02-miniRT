@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 21:54:40 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/08 08:44:34 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,4 @@ int				raytrace(t_rt *rt, t_ray *ray)
 		light = light->next;
 	}
 	return (colour);
-}
-
-t_coord			get_hit_point(t_ray ray)
-{
-	return (v_add(ray.p_ori, v_scale(ray.v_dir, ray.hit.time)));
 }

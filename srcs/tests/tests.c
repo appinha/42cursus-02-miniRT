@@ -8,6 +8,7 @@ void	print_triage_scene_info(t_scene *scene)
 	t_elem	*ptr_sp;
 	t_elem	*ptr_pl;
 	t_elem	*ptr_sq;
+	t_elem	*ptr_cy;
 	t_elem	*ptr_tr;
 
 	ft_printf("\n	• GET SCENE INFO •\n\n");
@@ -19,7 +20,7 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_cam = scene->cam;
 	while (ptr_cam)
 	{
-		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i", i,
+		ft_printf("Camera %i:  %.1f,%.1f,%.1f   %.1f,%.1f,%.1f   %i", i,
 				ptr_cam->point.x, ptr_cam->point.y, ptr_cam->point.z,
 				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
 				ptr_cam->cam.fov);
@@ -30,7 +31,7 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_light = scene->light;
 	while (ptr_light != NULL)
 	{
-		ft_printf("Light %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
+		ft_printf("Light %i:  %.1f,%.1f,%.1f   %.1f   %x\n", i,
 				ptr_light->point.x, ptr_light->point.y, ptr_light->point.z,
 				ptr_light->ratio,
 				ptr_light->colour);
@@ -41,7 +42,7 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_sp = scene->sp;
 	while (ptr_sp != NULL)
 	{
-		ft_printf("Sphere %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
+		ft_printf("Sphere %i:  %.1f,%.1f,%.1f   %.1f   %x\n", i,
 				ptr_sp->point.x, ptr_sp->point.y, ptr_sp->point.z,
 				ptr_sp->diam,
 				ptr_sp->colour);
@@ -52,9 +53,9 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_pl = scene->pl;
 	while (ptr_pl != NULL)
 	{
-		ft_printf("Plane %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
+		ft_printf("Plane %i:  %.1f,%.1f,%.1f   %.1f,%.1f,%.1f   %x\n", i,
 				ptr_pl->point.x, ptr_pl->point.y, ptr_pl->point.z,
-				ptr_pl->diam,
+				ptr_pl->normal.x, ptr_pl->normal.y, ptr_pl->normal.z,
 				ptr_pl->colour);
 		ptr_pl = ptr_pl->next;
 		i++;
@@ -63,11 +64,25 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_sq = scene->sq;
 	while (ptr_sq != NULL)
 	{
-		ft_printf("Square %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
+		ft_printf("Square %i:  %.1f,%.1f,%.1f   %.1f,%.1f,%.1f   %.1f   %x\n", i,
 				ptr_sq->point.x, ptr_sq->point.y, ptr_sq->point.z,
-				ptr_sq->diam,
+				ptr_sq->normal.x, ptr_sq->normal.y, ptr_sq->normal.z,
+				ptr_sq->height,
 				ptr_sq->colour);
 		ptr_sq = ptr_sq->next;
+		i++;
+	}
+	i = 1;
+	ptr_cy = scene->cy;
+	while (ptr_cy != NULL)
+	{
+		ft_printf("Cylinder %i:  %.1f,%.1f,%.1f   %.1f,%.1f,%.1f   %.1f   %.1f   %x\n", i,
+				ptr_cy->point.x, ptr_cy->point.y, ptr_cy->point.z,
+				ptr_cy->normal.x, ptr_cy->normal.y, ptr_cy->normal.z,
+				ptr_cy->diam,
+				ptr_cy->height,
+				ptr_cy->colour);
+		ptr_cy = ptr_cy->next;
 		i++;
 	}
 	i = 1;
