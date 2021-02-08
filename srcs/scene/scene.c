@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:17:20 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:27:43 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 19:17:24 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void		get_scene_elem(t_scene *scene, short int elem_id,
 	else
 	{
 		new = malloc_ver(sizeof(t_elem));
+		ft_bzero(new, 0);
 		new->next = NULL;
 	}
 	scene_line_split(scene, elem_id, 1);

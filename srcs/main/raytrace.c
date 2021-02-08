@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 18:09:34 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 21:54:40 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static bool		intersect(t_rt *rt, t_ray *ray)
 		iter_lst_objs(ray, rt->scene.sp, &ret, *hit_sp);
 	if (rt->scene.pl != 0)
 		iter_lst_objs(ray, rt->scene.pl, &ret, *hit_pl);
-	// if (rt->scene.sq != 0)
-	// 	iter_lst_objs(ray, rt->scene.sq, &ret, *hit_sq);
-	// if (rt->scene.tr != 0)
-	// 	iter_lst_objs(ray, rt->scene.tr, &ret, *hit_tr);
+	if (rt->scene.sq != 0)
+		iter_lst_objs(ray, rt->scene.sq, &ret, *hit_polyg);
+	if (rt->scene.tr != 0)
+		iter_lst_objs(ray, rt->scene.tr, &ret, *hit_polyg);
 	// if (rt->scene.cy != 0)
 	// 	iter_lst_objs(ray, rt->scene.cy, &ret, *hit_cy);
 	return (ret);

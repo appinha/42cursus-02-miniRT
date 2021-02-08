@@ -7,6 +7,7 @@ void	print_triage_scene_info(t_scene *scene)
 	t_elem	*ptr_light;
 	t_elem	*ptr_sp;
 	t_elem	*ptr_pl;
+	t_elem	*ptr_sq;
 	t_elem	*ptr_tr;
 
 	ft_printf("\n	• GET SCENE INFO •\n\n");
@@ -18,12 +19,10 @@ void	print_triage_scene_info(t_scene *scene)
 	ptr_cam = scene->cam;
 	while (ptr_cam)
 	{
-		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i\
-				hor.x: %.1f\n", i,
+		ft_printf("Camera %i:  %.0f,%.0f,%.0f   %.0f,%.0f,%.0f   %i", i,
 				ptr_cam->point.x, ptr_cam->point.y, ptr_cam->point.z,
 				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
-				ptr_cam->cam.fov,
-				ptr_cam->cam.hor.x);
+				ptr_cam->cam.fov);
 		ptr_cam = ptr_cam->next;
 		i++;
 	}
@@ -61,13 +60,24 @@ void	print_triage_scene_info(t_scene *scene)
 		i++;
 	}
 	i = 1;
+	ptr_sq = scene->sq;
+	while (ptr_sq != NULL)
+	{
+		ft_printf("Square %i:  %.0f,%.0f,%.0f   %.1f   %x\n", i,
+				ptr_sq->point.x, ptr_sq->point.y, ptr_sq->point.z,
+				ptr_sq->diam,
+				ptr_sq->colour);
+		ptr_sq = ptr_sq->next;
+		i++;
+	}
+	i = 1;
 	ptr_tr = scene->tr;
 	while (ptr_tr != NULL)
 	{
-		ft_printf("Triangle %i:  %.0f,%.0f,%.0f  %.0f,%.0f,%.0f  %.0f,%.0f,%.0f   %x\n", i,
-				ptr_tr->tr.p1.x, ptr_tr->tr.p1.y, ptr_tr->tr.p1.z,
-				ptr_tr->tr.p2.x, ptr_tr->tr.p2.y, ptr_tr->tr.p2.z,
-				ptr_tr->tr.p3.x, ptr_tr->tr.p3.y, ptr_tr->tr.p3.z,
+		ft_printf("Triangle %i:  %.1f,%.1f,%.1f  %.1f,%.1f,%.1f  %.1f,%.1f,%.1f   %x\n", i,
+				ptr_tr->vertex[0].x, ptr_tr->vertex[0].y, ptr_tr->vertex[0].z,
+				ptr_tr->vertex[1].x, ptr_tr->vertex[1].y, ptr_tr->vertex[1].z,
+				ptr_tr->vertex[2].x, ptr_tr->vertex[2].y, ptr_tr->vertex[2].z,
 				ptr_tr->colour);
 		ptr_tr = ptr_tr->next;
 		i++;

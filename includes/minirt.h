@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 12:36:05 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 22:28:04 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@
 
 # define EPSILON	0.0001
 # define ALBEDO		1000
-
-typedef enum	e_type {
-	__NULL,
-	SPHERE,
-	PLANE,
-	SQUARE,
-	TRIANGLE,
-	CYLINDER
-}				t_type;
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -108,9 +99,7 @@ t_coord			get_hit_point(t_ray ray);
 */
 bool			hit_sp(t_ray *ray, t_elem *elem);
 bool			hit_pl(t_ray *ray, t_elem *elem);
-// bool			hit_sq(t_ray *ray, t_elem *elem);
-// bool			hit_tr(t_ray *ray, t_elem *elem);
-// bool			hit_cy(t_ray *ray, t_elem *elem);
+bool			hit_polyg(t_ray *ray, t_elem *elem);
 /*
 ** FILE: colours.c
 */

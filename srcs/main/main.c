@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 18:28:48 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 20:32:57 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				main(int argc, char *argv[])
 		error_msg_and_exit("003");
 	rt.save = (argc == 3);
 	init_scene(argv[1], &rt.scene);
-	// print_triage_scene_info(&rt.scene);
+	print_triage_scene_info(&rt.scene);
 	init_mlx(&rt);
 	render_img(&rt);
 	run_mlx(&rt);

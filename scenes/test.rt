@@ -34,7 +34,9 @@ sp +0.0,+1.0,+0.0   2.0    216,56,136
 ### SQUARE
 ## (origin point | orientation [-1.0,1.0] | side size [>0] | colour in RGB [0,255])
 ## coord            normal           size   colour
-# sq -2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
+sq -2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
+sq +0.0,+3.0,-1.0   +0.0,+1.0,+0.0   4.0    0,176,240
+sq +2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
 
 ### CYLINDER
 ## (origin point | orientation [-1.0,1.0] | diameter [>0] | height [>0] | colour in RGB [0,255])
@@ -44,4 +46,4 @@ sp +0.0,+1.0,+0.0   2.0    216,56,136
 ### TRIANGLE
 ## (first point | second point | third point | colour in RGB [0,255])
 ## p1               p2               p3               colour
-# tr -2.0,-0.5,+0.0   +2.0,-0.5,+0.0   +0.0,-0.5,-5.0   0,255,255
+tr -2.0,+0.2,+1.0   +2.0,+0.2,+1.0   +0.0,+0.1,-4.0   68,194,164

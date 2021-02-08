@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:22:05 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/07 21:23:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@
 # include <stdbool.h>
 # include "libft.h"
 # include "vectors.h"
+
+/*
+** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
+**                              MACROS
+*/
+typedef enum	e_type {
+	AMBIENT_LIGHT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	SQUARE,
+	CYLINDER,
+	TRIANGLE
+}				t_type;
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
@@ -49,14 +64,16 @@ typedef struct		s_tr
 
 typedef struct		s_elem
 {
+	t_type			obj_type;
 	t_coord			point;
 	t_coord			normal;
+	t_coord			*vertex;
+	short int		qtd_vertex;
 	int				colour;
 	double			ratio;
 	double			diam;
 	double			height;
 	t_cam			cam;
-	t_tr			tr;
 	struct s_elem	*next;
 }					t_elem;
 
