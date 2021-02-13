@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 21:23:18 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 12:43:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct		s_tr
 
 typedef struct		s_elem
 {
-	t_type			obj_type;
+	t_type			elem_type;
 	t_coord			point;
 	t_coord			normal;
 	t_coord			*vertex;
