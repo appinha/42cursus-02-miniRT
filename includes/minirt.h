@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/08 08:44:16 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 12:42:23 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct	s_hit
 	float		time;
 	t_coord		point;
 	t_coord		normal;
-	t_type		obj_type;
 	void		*obj;
 	int			colour;
 }				t_hit;
@@ -98,6 +97,7 @@ int				raytrace(t_rt *rt, t_ray *ray);
 */
 t_coord			get_hit_point(t_ray ray);
 bool			hit_sp(t_ray *ray, t_elem *elem);
+bool			hit_cy(t_ray *ray, t_elem *elem);
 /*
 ** FILE: hit_2.c
 */

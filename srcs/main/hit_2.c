@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 22:37:51 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/07 22:38:08 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 12:45:07 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ bool		hit_pl(t_ray *ray, t_elem *elem)
 		if (v_dot(ray->v_dir, elem->normal) > 0)
 			elem->normal = v_scale(elem->normal, -1);
 		ray->hit.normal = elem->normal;
-		ray->hit.obj_type = PLANE;
-		ray->hit.obj = elem;
+		// ray->hit.obj = elem;
 		ray->hit.colour = elem->colour;
 		return (true);
 	}
@@ -69,9 +68,9 @@ bool		hit_polyg(t_ray *ray, t_elem *elem)
 	t_elem	aux_pl;
 
 	ret = false;
-	if (elem->obj_type == SQUARE)
+	if (elem->elem_type == SQUARE)
 		aux_pl.point = elem->point;
-	if (elem->obj_type == TRIANGLE)
+	if (elem->elem_type == TRIANGLE)
 		aux_pl.point = elem->vertex[0];
 	aux_pl.normal = elem->normal;
 	aux_pl.colour = elem->colour;
@@ -82,7 +81,7 @@ bool		hit_polyg(t_ray *ray, t_elem *elem)
 		point_is_inside(ray_cpy.hit, elem->vertex, elem->qtd_vertex))
 	{
 		*ray = ray_cpy;
-		ray->hit.obj = elem;
+		// ray->hit.obj = elem;
 		ret = true;
 	}
 	return (ret);

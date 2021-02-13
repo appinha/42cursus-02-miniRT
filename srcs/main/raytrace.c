@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/08 08:44:34 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 12:45:05 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static bool		intersect(t_rt *rt, t_ray *ray)
 		iter_lst_objs(ray, rt->scene.sq, &ret, *hit_polyg);
 	if (rt->scene.tr != 0)
 		iter_lst_objs(ray, rt->scene.tr, &ret, *hit_polyg);
-	// if (rt->scene.cy != 0)
-	// 	iter_lst_objs(ray, rt->scene.cy, &ret, *hit_cy);
+	if (rt->scene.cy != 0)
+		iter_lst_objs(ray, rt->scene.cy, &ret, *hit_cy);
 	return (ret);
 }
 
@@ -48,7 +48,7 @@ static bool		in_shadow(t_rt *rt, t_hit hit, t_elem *light)
 
 	shadow.p_ori = v_add(hit.point, v_scale(hit.normal, EPSILON));
 	shadow.v_dir = v_norm(v_sub(light->point, shadow.p_ori));
-	shadow.hit.obj = hit.obj;
+	// shadow.hit.obj = hit.obj;
 	return (intersect(rt, &shadow));
 }
 
