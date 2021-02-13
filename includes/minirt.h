@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 17:31:07 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 18:29:32 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@
 # define KEY_ESC	65307
 # define KEY_CAM_R	65363
 # define KEY_CAM_L	65361
-# define MSG_QUIT	"\nExiting miniRT. À bientôt !\n\n"
+# define MSG_START	"\nBonjour ! The scene will be rendered very soon.\n"
+# define MSG_QUIT	"\nExiting miniRT. À bientôt !\n"
 
-# define EPSILON				0.0001
-# define ALBEDO					1000
+# define EPSILON	0.0001
+# define ALBEDO		1000
 
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-

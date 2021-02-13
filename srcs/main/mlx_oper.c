@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 17:30:49 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 18:27:45 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void		init_mlx(t_rt *rt)
 {
+	ft_printf("%s", MSG_START);
 	if (!(rt->mlx = mlx_init()))
 		error_msg_and_exit(SYSERR);
 	if (rt->save == false)
