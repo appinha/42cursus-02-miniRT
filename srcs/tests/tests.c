@@ -138,7 +138,7 @@ void	test_put_heart(t_img *img, int offset_x, int offset_y, int ratio)
 				while (r_x > 0)
 				{
 					if (img_heart[pos_y][pos_x] == 1)
-						pixel_put(img, x, y, 0x00FF0000);
+						mlx_put_pixel2img(img, x, y, 0x00FF0000);
 					x++;
 					r_x--;
 					if (r_x == 0)

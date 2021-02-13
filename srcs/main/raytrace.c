@@ -6,12 +6,24 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 12:45:05 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 20:37:15 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "vectors.h"
+
+t_ray			gen_ray(t_elem *cam, float x, float y)
+{
+	t_ray	ray;
+
+	ray.p_ori = cam->point;
+	ray.v_dir = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
+	ray.v_dir = v_add(ray.v_dir, cam->cam.llc);
+	ray.v_dir = v_norm(v_sub(ray.v_dir, ray.p_ori));
+	ray.hit = (t_hit) {0};
+	return (ray);
+}
 
 static void		iter_lst_objs(t_ray *ray, t_elem *elem, bool *ret,
 								bool (*ft)(t_ray *ray, t_elem *elem))

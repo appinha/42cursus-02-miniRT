@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 17:29:50 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 19:17:59 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,12 @@
 #include "scene.h"
 #include "tests.h"
 
-static t_ray	gen_ray(t_elem *cam, float x, float y)
-{
-	t_ray	ray;
+// static void	export_bpm()
+// {
+// 	a
+// }
 
-	ray.p_ori = cam->point;
-	ray.v_dir = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
-	ray.v_dir = v_add(ray.v_dir, cam->cam.llc);
-	ray.v_dir = v_norm(v_sub(ray.v_dir, ray.p_ori));
-	ray.hit = (t_hit) {0};
-	return (ray);
-}
-
-static void		render_img(t_rt *rt)
+void		render_img(t_rt *rt)
 {
 	int		x;
 	int		y;
@@ -45,12 +38,47 @@ static void		render_img(t_rt *rt)
 			ray = gen_ray(rt->scene.cam, (float)x / rt->size_x,
 										(float)y / rt->size_y);
 			colour = raytrace(rt, &ray);
-			pixel_put(&rt->img, x, (rt->size_y - 1) - y, colour);
+			mlx_put_pixel2img(&rt->img, x, (rt->size_y - 1) - y, colour);
 		}
 	}
+	if (rt->save == false)
+		mlx_put_image_to_window(rt->mlx, rt->win, rt->img.ptr, 0, 0);
+
 }
 
-int				main(int argc, char *argv[])
+static void	run_mlx_win(t_rt *rt)
+{
+	mlx_key_hook(rt->win, mlx_deal_key, rt);
+	mlx_hook(rt->win, DestroyNotify, StructureNotifyMask, mlx_win_close, rt);
+	mlx_loop(rt->mlx);
+}
+
+static void	init_mlx(t_rt *rt)
+{
+	ft_printf("%s", MSG_START);
+	if (!(rt->mlx = mlx_init()))
+		error_msg_and_exit(SYSERR);
+	if (rt->save == false)
+	{
+		mlx_get_screen_size(rt->mlx, &rt->size_x, &rt->size_y);
+		if (rt->scene.resol.x < rt->size_x)
+			rt->size_x = rt->scene.resol.x;
+		if (rt->scene.resol.y < rt->size_y)
+			rt->size_y = rt->scene.resol.y;
+	}
+	else
+	{
+		rt->size_x = rt->scene.resol.x;
+		rt->size_y = rt->scene.resol.y;
+	}
+	rt->win = mlx_new_window(rt->mlx, rt->size_x, rt->size_y, NAME);
+	if (!(rt->img.ptr = mlx_new_image(rt->mlx, rt->size_x, rt->size_x)) ||
+		!(rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bpp,
+					&rt->img.size, &rt->img.endian)))
+		error_msg_and_exit(SYSERR);
+}
+
+int			main(int argc, char *argv[])
 {
 	t_rt	rt;
 

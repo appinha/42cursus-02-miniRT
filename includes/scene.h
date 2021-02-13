@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 12:43:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 20:40:08 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ typedef struct		s_resol
 	int				y;
 }					t_resol;
 
+typedef struct		s_amb_li
+{
+	double			ratio;
+	int				colour;
+
+}					t_amb_li;
+
 typedef struct		s_cam
 {
 	float			fov;
@@ -64,7 +71,6 @@ typedef struct		s_tr
 
 typedef struct		s_elem
 {
-	t_type			elem_type;
 	t_coord			point;
 	t_coord			normal;
 	t_coord			*vertex;
@@ -75,6 +81,7 @@ typedef struct		s_elem
 	double			height;
 	t_cam			cam;
 	struct s_elem	*next;
+	struct s_elem	*prev;
 }					t_elem;
 
 typedef struct		s_scene
@@ -82,7 +89,7 @@ typedef struct		s_scene
 	char			*line;
 	char			**split;
 	t_resol			resol;
-	t_elem			amb_li;
+	t_amb_li		amb_li;
 	t_elem			*cam;
 	t_elem			*light;
 	t_elem			*sp;

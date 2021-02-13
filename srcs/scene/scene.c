@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:17:20 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 19:17:24 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 20:35:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	scene_line_split(t_scene *scene, short int elem_id,
 }
 
 void		get_scene_elem(t_scene *scene, short int elem_id,
-						void (*ft)(t_scene *, t_elem **))
+							void (*ft)(t_scene *, t_elem **))
 {
 	t_elem	*new;
 
@@ -107,6 +107,7 @@ void		lstadd_back_elem(t_elem **lst, t_elem *new, short int *qty)
 	{
 		while (aux->next)
 			aux = aux->next;
+		new->prev = aux;
 		aux->next = new;
 	}
 	(*qty)++;

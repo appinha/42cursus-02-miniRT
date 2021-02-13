@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 18:29:32 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 20:37:26 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,20 @@ typedef struct	s_ray
 **                              FUNCTION PROTOTYPES
 */
 /*
+** FILE: main.c
+*/
+void			render_img(t_rt *rt);
+/*
 ** FILE: mlx_oper.c
 */
-void			init_mlx(t_rt *rt);
-void			run_mlx_win(t_rt *rt);
-void			pixel_put(t_img *img, int x, int y, int colour);
+int				mlx_win_close(t_rt *rt);
+int				mlx_deal_key(int keycode, void *param);
+void			mlx_put_pixel2img(t_img *img, int x, int y, int colour);
 /*
 ** FILE: raytrace.c
 */
 int				raytrace(t_rt *rt, t_ray *ray);
+t_ray			gen_ray(t_elem *cam, float x, float y);
 /*
 ** FILE: hit_1.c
 */
