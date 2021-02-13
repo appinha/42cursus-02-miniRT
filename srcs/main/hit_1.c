@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:48 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 12:39:04 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/13 12:59:50 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		bhaskara(float a, float b, float c, float *res)
 	}
 }
 
-bool		hit_sp(t_ray *ray, t_elem *elem)
+bool			hit_sp(t_ray *ray, t_elem *elem)
 {
 	t_coord		v_sp2ray;
 	float		time[2];
@@ -83,7 +83,7 @@ static float	cy_calc(t_ray ray, t_elem cy, float *y, bool ret[2])
 	return (time[0]);
 }
 
-bool		hit_cy(t_ray *ray, t_elem *elem)
+bool			hit_cy(t_ray *ray, t_elem *elem)
 {
 	bool		ret[2];
 	float		time;
