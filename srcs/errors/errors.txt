@@ -12,6 +12,7 @@
 
 012 Scene description file is missing some required information. Duh! Please check if it contains valid values for, at least, Resolution, Ambient Light and Camera.
 
+
 # 1X0 scene_check_qty()
 
 100 Multiple entries for Resolution. Duh! Please provide a unique entry in the scene description file (*.rt).
@@ -94,7 +95,6 @@
 175 Invalid value for Cylinder's diameter. Duh! Please provide valid value(s) - positive float number - in the scene description file (*.rt).
 
 
-
 # 1X6 get_int() / get_ratio() / get_size()
 
 106 Invalid value(s) for Resolution. Duh! Please provide valid value(s)  - positive integers - in the scene description file (*.rt).
@@ -106,8 +106,3 @@
 136 Invalid value for Light's brightness ratio. Duh! Please provide a valid value - ranging from 0.0 to 1.0 - in the scene description file (*.rt).
 
 176 Invalid value for Cylinder's height. Duh! Please provide valid value(s) - positive float number - in the scene description file (*.rt).
-
-
-
-
-900 Uh-oh! Unable to allocate memory (malloc). Please try again (and maybe defrag your computer).
