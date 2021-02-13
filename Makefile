@@ -6,11 +6,11 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/07 09:26:54 by apuchill         ###   ########.fr        #
+#    Updated: 2021/02/10 08:58:04 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= minirt
+NAME		= miniRT
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
