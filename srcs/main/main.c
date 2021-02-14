@@ -6,19 +6,22 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 19:17:59 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 18:17:23 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <X11/X.h>
 #include "minirt.h"
 #include "errors.h"
-#include "scene.h"
+#include "bitmap.h"
 #include "tests.h"
 
-// static void	export_bpm()
-// {
-// 	a
-// }
+static void	run_mlx_win(t_rt *rt)
+{
+	mlx_key_hook(rt->win, mlx_deal_key, rt);
+	mlx_hook(rt->win, DestroyNotify, StructureNotifyMask, mlx_exit, rt);
+	mlx_loop(rt->mlx);
+}
 
 void		render_img(t_rt *rt)
 {
@@ -46,32 +49,27 @@ void		render_img(t_rt *rt)
 
 }
 
-static void	run_mlx_win(t_rt *rt)
-{
-	mlx_key_hook(rt->win, mlx_deal_key, rt);
-	mlx_hook(rt->win, DestroyNotify, StructureNotifyMask, mlx_win_close, rt);
-	mlx_loop(rt->mlx);
-}
-
 static void	init_mlx(t_rt *rt)
 {
-	ft_printf("%s", MSG_START);
 	if (!(rt->mlx = mlx_init()))
 		error_msg_and_exit(SYSERR);
 	if (rt->save == false)
 	{
+		ft_printf("%s", MSG_WIN_START);
 		mlx_get_screen_size(rt->mlx, &rt->size_x, &rt->size_y);
 		if (rt->scene.resol.x < rt->size_x)
 			rt->size_x = rt->scene.resol.x;
 		if (rt->scene.resol.y < rt->size_y)
 			rt->size_y = rt->scene.resol.y;
+		rt->win = mlx_new_window(rt->mlx, rt->size_x, rt->size_y, NAME);
 	}
 	else
 	{
+		ft_printf("%s", MSG_SAVE_START);
 		rt->size_x = rt->scene.resol.x;
 		rt->size_y = rt->scene.resol.y;
+		rt->win = NULL;
 	}
-	rt->win = mlx_new_window(rt->mlx, rt->size_x, rt->size_y, NAME);
 	if (!(rt->img.ptr = mlx_new_image(rt->mlx, rt->size_x, rt->size_x)) ||
 		!(rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bpp,
 					&rt->img.size, &rt->img.endian)))
@@ -94,8 +92,15 @@ int			main(int argc, char *argv[])
 	init_mlx(&rt);
 	render_img(&rt);
 	if (rt.save == false)
+	{
+		ft_printf("%s%s", MSG_WIN_USE_1, MSG_WIN_USE_2);
 		run_mlx_win(&rt);
-	// else
-	// 	export_bpm();
+	}
+	else
+	{
+		if (export_bitmap(rt, "image.bmp") < 0)
+			error_msg_and_exit(SYSERR);
+		mlx_exit(&rt);
+	}
 	return (0);
 }

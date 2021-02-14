@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 20:40:08 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 12:46:58 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ typedef struct		s_cam
 	t_coord			ver;
 	t_coord			llc;
 }					t_cam;
-
-typedef struct		s_tr
-{
-	t_coord			p1;
-	t_coord			p2;
-	t_coord			p3;
-
-}					t_tr;
 
 typedef struct		s_elem
 {

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 20:37:26 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 18:49:11 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              HEADERS
 */
-# include <X11/X.h>
 # include <stdbool.h>
 # include <math.h>
 # include "mlx.h"
@@ -25,18 +24,22 @@
 # include "scene.h"
 # include "vectors.h"
 
-# include <stdio.h>
-
 /*
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              MACROS
 */
-# define NAME		"miniRT"
-# define KEY_ESC	65307
-# define KEY_CAM_R	65363
-# define KEY_CAM_L	65361
-# define MSG_START	"\nBonjour ! The scene will be rendered very soon.\n"
-# define MSG_QUIT	"\nExiting miniRT. À bientôt !\n"
+# define NAME			"miniRT"
+
+# define KEY_ESC		65307
+# define KEY_CAM_R		65363
+# define KEY_CAM_L		65361
+
+# define MSG_WIN_START	"\nBonjour ! The scene will be rendered very soon.\n"
+# define MSG_WIN_USE_1	"Awesome! Press right / left keys to change cameras. "
+# define MSG_WIN_USE_2	"Press ESC key or X on the window to exit.\n"
+# define MSG_WIN_QUIT	"Exiting miniRT. À bientôt !\n"
+# define MSG_SAVE_START	"\nBonjour ! Rendering and saving image...\n"
+# define MSG_SAVE_QUIT	"Successfully saved rendered image. À bientôt !\n"
 
 # define EPSILON	0.0001
 # define ALBEDO		1000
@@ -70,8 +73,8 @@ typedef struct	s_hit
 	float		time;
 	t_coord		point;
 	t_coord		normal;
-	void		*obj;
 	int			colour;
+	void		*obj;
 }				t_hit;
 
 typedef struct	s_ray
@@ -92,7 +95,7 @@ void			render_img(t_rt *rt);
 /*
 ** FILE: mlx_oper.c
 */
-int				mlx_win_close(t_rt *rt);
+int				mlx_exit(t_rt *rt);
 int				mlx_deal_key(int keycode, void *param);
 void			mlx_put_pixel2img(t_img *img, int x, int y, int colour);
 /*

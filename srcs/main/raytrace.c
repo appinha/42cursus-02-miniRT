@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 20:37:15 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 12:53:40 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_ray			gen_ray(t_elem *cam, float x, float y)
 	ray.v_dir = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
 	ray.v_dir = v_add(ray.v_dir, cam->cam.llc);
 	ray.v_dir = v_norm(v_sub(ray.v_dir, ray.p_ori));
-	ray.hit = (t_hit) {0};
+	ft_bzero(&ray.hit, 0);
 	return (ray);
 }
 

@@ -6,12 +6,12 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:17:20 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 20:35:47 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 18:13:45 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
 #include "scene.h"
+#include "errors.h"
 
 void		init_scene(char *file, t_scene *scene)
 {
@@ -25,8 +25,7 @@ void		init_scene(char *file, t_scene *scene)
 	if (ft_strnrcmp(file, ".rt", 3) != 0)
 		error_msg_and_exit("010");
 	*scene = (t_scene) {0};
-	if ((fd = open(file, O_RDONLY)) < 0)
-		error_msg_and_exit(SYSERR);
+	fd = open_ver(file);
 	while (get_next_line(fd, &scene->line) == 1)
 	{
 		id = 0;
@@ -36,7 +35,7 @@ void		init_scene(char *file, t_scene *scene)
 			get_scene_elem(scene, id, *ft_scene[id]);
 		free(scene->line);
 	}
-	close(fd);
+	close_ver(fd);
 	if (scene->qtys[0] == 0 || scene->qtys[1] == 0 || scene->qtys[2] == 0)
 		error_msg_and_exit("012");
 	get_cam_info(scene, scene->cam);
@@ -85,6 +84,7 @@ void		get_scene_elem(t_scene *scene, short int elem_id,
 		new = malloc_ver(sizeof(t_elem));
 		ft_bzero(new, 0);
 		new->next = NULL;
+		new->prev = NULL;
 	}
 	scene_line_split(scene, elem_id, 1);
 	(*ft)(scene, &new);

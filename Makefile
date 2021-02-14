@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/10 08:58:04 by apuchill         ###   ########.fr        #
+#    Updated: 2021/02/14 18:46:44 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= miniRT
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
-SUBDIRS		= main errors scene vectors tests
+SUBDIRS		= main errors scene vectors bitmap tests
 
 SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
