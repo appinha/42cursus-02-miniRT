@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:03:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:47:53 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"
+# include "errors.h"
 # include "scene.h"
 # include "vectors.h"
 
@@ -48,15 +49,6 @@
 ** -.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-.-'-
 **                              STRUCT DECLARATIONS
 */
-typedef struct	s_img
-{
-	void		*ptr;
-	char		*addr;
-	int			bpp;
-	int			size;
-	int			endian;
-}				t_img;
-
 typedef struct	s_rt
 {
 	bool		save;
@@ -64,7 +56,6 @@ typedef struct	s_rt
 	void		*win;
 	int			size_x;
 	int			size_y;
-	t_img		img;
 	t_scene		scene;
 }				t_rt;
 
@@ -91,7 +82,7 @@ typedef struct	s_ray
 /*
 ** FILE: main.c
 */
-void			render_img(t_rt *rt);
+void			render_img(t_rt *rt, t_cam *cam);
 /*
 ** FILE: mlx_oper.c
 */

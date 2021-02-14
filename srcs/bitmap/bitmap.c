@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 21:30:07 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 17:43:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:54:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,12 @@ static int		put_headers(int fd, unsigned int size_x, unsigned int size_y)
 	return (ret);
 }
 
-int			export_bitmap(t_rt rt, char *filename)
+int			export_bitmap(char *filename, int size_y, t_img img)
 {
-	t_img	img;
-	int		size_y;
 	int		fd;
 
-	img = rt.img;
-	size_y = rt.size_y;
 	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, S_IRUSR | S_IWUSR);
-	if (fd < 0 || (put_headers(fd, rt.size_x, rt.size_y)) < 0)
+	if (fd < 0 || (put_headers(fd, img.size, size_y)) < 0)
 		return (-1);
 	while (--size_y >= 0)
 	{

@@ -6,12 +6,11 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 19:17:57 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:35:47 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "vectors.h"
 
 t_ray			gen_ray(t_cam *cam, float x, float y)
 {

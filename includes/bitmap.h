@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:11:24 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 17:43:02 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:53:29 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ typedef struct		s_bmp_h
 /*
 ** FILE: bitmap.c
 */
-int				export_bitmap(t_rt rt, char *filename);
+int				export_bitmap(char *filename, int size_y, t_img img);
 
 #endif

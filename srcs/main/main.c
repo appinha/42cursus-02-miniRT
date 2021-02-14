@@ -6,13 +6,12 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:17:18 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:54:00 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
 #include "minirt.h"
-#include "errors.h"
 #include "bitmap.h"
 #include "tests.h"
 
@@ -23,14 +22,18 @@ static void	run_mlx_win(t_rt *rt)
 	mlx_loop(rt->mlx);
 }
 
-void		render_img(t_rt *rt)
+void		render_img(t_rt *rt, t_cam *cam)
 {
 	int		x;
 	int		y;
 	t_ray	ray;
 	int		colour;
 
-	if (!rt->scene.cam)
+	if (!(cam->img.ptr = mlx_new_image(rt->mlx, rt->size_x, rt->size_x)) ||
+		!(cam->img.addr = mlx_get_data_addr(cam->img.ptr, &cam->img.bpp,
+					&cam->img.size, &cam->img.endian)))
+		error_msg_and_exit(SYSERR);
+	if (!cam)
 		return ;
 	y = -1;
 	while (y++ < (rt->size_y - 1))
@@ -38,14 +41,13 @@ void		render_img(t_rt *rt)
 		x = -1;
 		while (x++ < (rt->size_x - 1))
 		{
-			ray = gen_ray(rt->scene.cam, (float)x / rt->size_x,
-										(float)y / rt->size_y);
+			ray = gen_ray(cam, (float)x / rt->size_x, (float)y / rt->size_y);
 			colour = raytrace(rt, &ray);
-			mlx_put_pixel2img(&rt->img, x, (rt->size_y - 1) - y, colour);
+			mlx_put_pixel2img(&cam->img, x, (rt->size_y - 1) - y, colour);
 		}
 	}
 	if (rt->save == false)
-		mlx_put_image_to_window(rt->mlx, rt->win, rt->img.ptr, 0, 0);
+		mlx_put_image_to_window(rt->mlx, rt->win, cam->img.ptr, 0, 0);
 }
 
 static void	init_mlx(t_rt *rt)
@@ -69,10 +71,6 @@ static void	init_mlx(t_rt *rt)
 		rt->size_y = rt->scene.resol.y;
 		rt->win = NULL;
 	}
-	if (!(rt->img.ptr = mlx_new_image(rt->mlx, rt->size_x, rt->size_x)) ||
-		!(rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bpp,
-					&rt->img.size, &rt->img.endian)))
-		error_msg_and_exit(SYSERR);
 }
 
 int			main(int argc, char *argv[])
@@ -89,7 +87,7 @@ int			main(int argc, char *argv[])
 	init_scene(argv[1], &rt.scene);
 	// print_triage_scene_info(&rt.scene);
 	init_mlx(&rt);
-	render_img(&rt);
+	render_img(&rt, rt.scene.cam);
 	if (rt.save == false)
 	{
 		ft_printf("%s%s", MSG_WIN_USE_1, MSG_WIN_USE_2);
@@ -97,7 +95,7 @@ int			main(int argc, char *argv[])
 	}
 	else
 	{
-		if (export_bitmap(rt, "image.bmp") < 0)
+		if (export_bitmap("image.bmp", rt.size_y, rt.scene.cam->img) < 0)
 			error_msg_and_exit(SYSERR);
 		mlx_exit(&rt);
 	}

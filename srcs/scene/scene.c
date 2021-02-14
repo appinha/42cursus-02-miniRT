@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:17:20 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 19:32:34 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 20:12:31 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	get_scene_elem(t_scene *scene, short int elem_id,
 	scene_line_split(scene, elem_id, 1);
 	(*ft)(scene, &new);
 	if (elem_id >= 3)
-		lstadd_back_elem(&scene->light + elem_id - 3, new, &scene->qtys[elem_id]);
+		lstadd_back_elem(&scene->light + elem_id - 3, new,
+							&scene->qtys[elem_id]);
 	ft_split_free(scene->split);
 	scene->qtys[elem_id]++;
 }

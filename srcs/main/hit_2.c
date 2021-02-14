@@ -6,12 +6,11 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 22:37:51 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 18:47:42 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:35:24 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "vectors.h"
 
 bool		hit_pl(t_ray *ray, t_elem *elem)
 {

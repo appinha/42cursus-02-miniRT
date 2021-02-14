@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:17:39 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 20:08:15 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ int			mlx_exit(t_rt *rt)
 		mlx_clear_window(rt->mlx, rt->win);
 		mlx_destroy_window(rt->mlx, rt->win);
 	}
-	mlx_destroy_image(rt->mlx, rt->img.ptr);
+	while (rt->scene.cam->prev)
+		rt->scene.cam = rt->scene.cam->prev;
+	while (rt->scene.cam && rt->scene.cam->img.ptr)
+	{
+		mlx_destroy_image(rt->mlx, rt->scene.cam->img.ptr);
+		rt->scene.cam = rt->scene.cam->next;
+	}
 	if (rt->save == false)
 		ft_printf("%s", MSG_WIN_QUIT);
 	else
@@ -45,7 +51,10 @@ static void	cam_change(t_rt *rt, int step)
 	if (*cam != cam_orig)
 	{
 		ft_printf("Changing camera... ");
-		render_img(rt);
+		if ((*cam)->img.ptr == NULL)
+			render_img(rt, *cam);
+		else
+			mlx_put_image_to_window(rt->mlx, rt->win, (*cam)->img.ptr, 0, 0);
 		ft_printf("Done!\n");
 	}
 	else

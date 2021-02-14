@@ -6,12 +6,11 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:48 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 12:59:50 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:35:21 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "vectors.h"
 
 t_coord			get_hit_point(t_ray ray)
 {

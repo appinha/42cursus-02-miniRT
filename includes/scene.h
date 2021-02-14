@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 19:31:51 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:48:10 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,18 @@ typedef struct		s_amb_li
 
 }					t_amb_li;
 
+typedef struct		s_img
+{
+	void			*ptr;
+	char			*addr;
+	int				bpp;
+	int				size;
+	int				endian;
+}					t_img;
+
 typedef struct		s_cam
 {
+	t_img			img;
 	t_coord			point;
 	t_coord			normal;
 	float			fov;

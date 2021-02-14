@@ -6,12 +6,11 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 17:54:03 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:23:28 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:35:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "vectors.h"
 
 static int	check_rgb(int nbr)
 {

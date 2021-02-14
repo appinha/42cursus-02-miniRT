@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:41:37 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:32:27 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 20:05:22 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	get_2_cam(t_scene *scene, t_elem **new)
 	free(*new);
 	new_cam = malloc_ver(sizeof(t_cam));
 	ft_bzero(new_cam, 0);
-	new_cam->next = NULL;
-	new_cam->prev = NULL;
 	new_cam->point = get_coord(scene->split[1], "122");
 	new_cam->normal = v_norm(get_normal(scene->split[2], "123"));
 	new_cam->fov = get_fov(scene->split[3], "126");
+	new_cam->img.ptr = NULL;
+	new_cam->next = NULL;
+	new_cam->prev = NULL;
 	lstadd_back_cam(&scene->cam, new_cam, &scene->qtys[2]);
 }
 
