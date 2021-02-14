@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:37:37 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 12:46:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:31:51 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 */
 # include <stdbool.h>
 # include "libft.h"
+# include "errors.h"
 # include "vectors.h"
 
 /*
@@ -55,10 +56,14 @@ typedef struct		s_amb_li
 
 typedef struct		s_cam
 {
+	t_coord			point;
+	t_coord			normal;
 	float			fov;
 	t_coord			hor;
 	t_coord			ver;
 	t_coord			llc;
+	struct s_cam	*next;
+	struct s_cam	*prev;
 }					t_cam;
 
 typedef struct		s_elem
@@ -71,9 +76,7 @@ typedef struct		s_elem
 	double			ratio;
 	double			diam;
 	double			height;
-	t_cam			cam;
 	struct s_elem	*next;
-	struct s_elem	*prev;
 }					t_elem;
 
 typedef struct		s_scene
@@ -82,7 +85,7 @@ typedef struct		s_scene
 	char			**split;
 	t_resol			resol;
 	t_amb_li		amb_li;
-	t_elem			*cam;
+	t_cam			*cam;
 	t_elem			*light;
 	t_elem			*sp;
 	t_elem			*pl;
@@ -102,15 +105,13 @@ typedef void		(*t_arr_sc)(t_scene *, t_elem **);
 ** FILE: scene.c
 */
 void				init_scene(char *file, t_scene *scene);
-void				get_scene_elem(t_scene *scene, short int elem_id,
-						void (*ft)(t_scene *, t_elem **));
 /*
 ** FILE: get_scene_elem.c
 */
 void				get_0_resol(t_scene *scene, t_elem **new);
 void				get_1_amb_li(t_scene *scene, t_elem **new);
 void				get_2_cam(t_scene *scene, t_elem **new);
-void				get_cam_info(t_scene *scene, t_elem *cam);
+void				get_cam_info(t_scene *scene, t_cam *cam);
 void				get_3_light(t_scene *scene, t_elem **new);
 /*
 ** FILE: get_scene_objs.c
@@ -120,11 +121,6 @@ void				get_5_pl(t_scene *scene, t_elem **new);
 void				get_6_sq(t_scene *scene, t_elem **new);
 void				get_7_cy(t_scene *scene, t_elem **new);
 void				get_8_tr(t_scene *scene, t_elem **new);
-/*
-** FILE: get_scene_aux.c
-*/
-void				lstadd_back_elem(t_elem **lst, t_elem *new,
-						short int *qty);
 /*
 ** FILE: get_int.c
 */
@@ -150,5 +146,12 @@ int					get_colour(char *str, char *code);
 bool				ft_isnormal(t_coord normal);
 t_coord				get_coord(char *str, char *code);
 t_coord				get_normal(char *str, char *code);
+/*
+** FILE: utils.c
+*/
+void				lstadd_back_elem(t_elem **lst, t_elem *new,
+						short int *qty);
+void				lstadd_back_cam(t_cam **lst, t_cam *new,
+						short int *qty);
 
 #endif

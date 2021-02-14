@@ -3,7 +3,7 @@
 void	print_triage_scene_info(t_scene *scene)
 {
 	int		i;
-	t_elem	*ptr_cam;
+	t_cam	*ptr_cam;
 	t_elem	*ptr_light;
 	t_elem	*ptr_sp;
 	t_elem	*ptr_pl;
@@ -23,7 +23,7 @@ void	print_triage_scene_info(t_scene *scene)
 		ft_printf("Camera %i:  %.1f,%.1f,%.1f   %.1f,%.1f,%.1f   %i", i,
 				ptr_cam->point.x, ptr_cam->point.y, ptr_cam->point.z,
 				ptr_cam->normal.x, ptr_cam->normal.y, ptr_cam->normal.z,
-				ptr_cam->cam.fov);
+				ptr_cam->fov);
 		ptr_cam = ptr_cam->next;
 		i++;
 	}

@@ -6,40 +6,11 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:17:20 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 18:13:45 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:32:34 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "errors.h"
-
-void		init_scene(char *file, t_scene *scene)
-{
-	static t_arr_sc	ft_scene[9] = {get_0_resol, get_1_amb_li, get_2_cam,
-				get_3_light, get_4_sp, get_5_pl, get_6_sq, get_7_cy, get_8_tr};
-	static char		*elem[9] = {"R ", "A ", "c ", "l ",
-								"sp", "pl", "sq", "cy", "tr"};
-	int				id;
-	int				fd;
-
-	if (ft_strnrcmp(file, ".rt", 3) != 0)
-		error_msg_and_exit("010");
-	*scene = (t_scene) {0};
-	fd = open_ver(file);
-	while (get_next_line(fd, &scene->line) == 1)
-	{
-		id = 0;
-		while (id < 9 && ft_strncmp(scene->line, elem[id], 2))
-			id++;
-		if (id < 9)
-			get_scene_elem(scene, id, *ft_scene[id]);
-		free(scene->line);
-	}
-	close_ver(fd);
-	if (scene->qtys[0] == 0 || scene->qtys[1] == 0 || scene->qtys[2] == 0)
-		error_msg_and_exit("012");
-	get_cam_info(scene, scene->cam);
-}
 
 static int	ft_isvalidchar(char c)
 {
@@ -68,7 +39,7 @@ static void	scene_line_split(t_scene *scene, short int elem_id,
 		error_msg_and_exit(get_error_code(1, elem_id, err_id));
 }
 
-void		get_scene_elem(t_scene *scene, short int elem_id,
+static void	get_scene_elem(t_scene *scene, short int elem_id,
 							void (*ft)(t_scene *, t_elem **))
 {
 	t_elem	*new;
@@ -84,31 +55,39 @@ void		get_scene_elem(t_scene *scene, short int elem_id,
 		new = malloc_ver(sizeof(t_elem));
 		ft_bzero(new, 0);
 		new->next = NULL;
-		new->prev = NULL;
 	}
 	scene_line_split(scene, elem_id, 1);
 	(*ft)(scene, &new);
-	if (elem_id >= 2)
-		lstadd_back_elem(&scene->cam + elem_id - 2, new, &scene->qtys[elem_id]);
+	if (elem_id >= 3)
+		lstadd_back_elem(&scene->light + elem_id - 3, new, &scene->qtys[elem_id]);
 	ft_split_free(scene->split);
 	scene->qtys[elem_id]++;
 }
 
-void		lstadd_back_elem(t_elem **lst, t_elem *new, short int *qty)
+void		init_scene(char *file, t_scene *scene)
 {
-	t_elem	*aux;
+	static t_arr_sc	ft_scene[9] = {get_0_resol, get_1_amb_li, get_2_cam,
+				get_3_light, get_4_sp, get_5_pl, get_6_sq, get_7_cy, get_8_tr};
+	static char		*elem[9] = {"R ", "A ", "c ", "l ",
+								"sp", "pl", "sq", "cy", "tr"};
+	int				id;
+	int				fd;
 
-	aux = (*lst);
-	if (!new)
-		return ;
-	if (!*lst)
-		(*lst) = new;
-	else
+	if (ft_strnrcmp(file, ".rt", 3) != 0)
+		error_msg_and_exit("010");
+	*scene = (t_scene) {0};
+	fd = open_ver(file);
+	while (get_next_line(fd, &scene->line) == 1)
 	{
-		while (aux->next)
-			aux = aux->next;
-		new->prev = aux;
-		aux->next = new;
+		id = 0;
+		while (id < 9 && ft_strncmp(scene->line, elem[id], 2))
+			id++;
+		if (id < 9)
+			get_scene_elem(scene, id, *ft_scene[id]);
+		free(scene->line);
 	}
-	(*qty)++;
+	close_ver(fd);
+	if (scene->qtys[0] == 0 || scene->qtys[1] == 0 || scene->qtys[2] == 0)
+		error_msg_and_exit("012");
+	get_cam_info(scene, scene->cam);
 }

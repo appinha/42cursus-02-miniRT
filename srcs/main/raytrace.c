@@ -6,20 +6,20 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:30:41 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 12:53:40 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:17:57 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "vectors.h"
 
-t_ray			gen_ray(t_elem *cam, float x, float y)
+t_ray			gen_ray(t_cam *cam, float x, float y)
 {
 	t_ray	ray;
 
 	ray.p_ori = cam->point;
-	ray.v_dir = v_add(v_scale(cam->cam.hor, x), v_scale(cam->cam.ver, y));
-	ray.v_dir = v_add(ray.v_dir, cam->cam.llc);
+	ray.v_dir = v_add(v_scale(cam->hor, x), v_scale(cam->ver, y));
+	ray.v_dir = v_add(ray.v_dir, cam->llc);
 	ray.v_dir = v_norm(v_sub(ray.v_dir, ray.p_ori));
 	ft_bzero(&ray.hit, 0);
 	return (ray);
@@ -60,7 +60,6 @@ static bool		in_shadow(t_rt *rt, t_hit hit, t_elem *light)
 
 	shadow.p_ori = v_add(hit.point, v_scale(hit.normal, EPSILON));
 	shadow.v_dir = v_norm(v_sub(light->point, shadow.p_ori));
-	// shadow.hit.obj = hit.obj;
 	return (intersect(rt, &shadow));
 }
 

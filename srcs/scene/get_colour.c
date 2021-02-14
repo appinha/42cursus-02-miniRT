@@ -6,11 +6,10 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:36:57 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:27:28 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:32:11 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
 #include "scene.h"
 
 bool	ft_isrgb(int n)

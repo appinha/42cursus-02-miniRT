@@ -6,13 +6,11 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 19:44:38 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/13 20:25:58 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:31:53 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
 #include "scene.h"
-#include "vectors.h"
 
 void	get_4_sp(t_scene *scene, t_elem **new)
 {

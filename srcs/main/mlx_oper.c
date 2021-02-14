@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 18:21:56 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:17:39 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int			mlx_exit(t_rt *rt)
 	else
 		ft_printf("%s", MSG_SAVE_QUIT);
 	exit(EXIT_SUCCESS);
-	return(0);
+	return (0);
 }
 
 static void	cam_change(t_rt *rt, int step)
 {
-	t_elem	**cam;
-	t_elem	*cam_orig;
+	t_cam	**cam;
+	t_cam	*cam_orig;
 
 	cam = &(rt->scene.cam);
 	cam_orig = rt->scene.cam;

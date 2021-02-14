@@ -6,11 +6,10 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 16:51:35 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/07 09:27:36 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:32:19 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
 #include "scene.h"
 
 bool	ft_str_isfloat(char *str)

@@ -6,11 +6,10 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:41:37 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/13 20:36:02 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:32:27 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
 #include "scene.h"
 
 void	get_0_resol(t_scene *scene, t_elem **new)
@@ -32,12 +31,20 @@ void	get_1_amb_li(t_scene *scene, t_elem **new)
 
 void	get_2_cam(t_scene *scene, t_elem **new)
 {
-	(*new)->point = get_coord(scene->split[1], "122");
-	(*new)->normal = v_norm(get_normal(scene->split[2], "123"));
-	(*new)->cam.fov = get_fov(scene->split[3], "126");
+	t_cam	*new_cam;
+
+	free(*new);
+	new_cam = malloc_ver(sizeof(t_cam));
+	ft_bzero(new_cam, 0);
+	new_cam->next = NULL;
+	new_cam->prev = NULL;
+	new_cam->point = get_coord(scene->split[1], "122");
+	new_cam->normal = v_norm(get_normal(scene->split[2], "123"));
+	new_cam->fov = get_fov(scene->split[3], "126");
+	lstadd_back_cam(&scene->cam, new_cam, &scene->qtys[2]);
 }
 
-void	get_cam_info(t_scene *scene, t_elem *cam)
+void	get_cam_info(t_scene *scene, t_cam *cam)
 {
 	float	vp[2];
 	t_coord	w;
@@ -46,16 +53,16 @@ void	get_cam_info(t_scene *scene, t_elem *cam)
 
 	while (cam)
 	{
-		vp[0] = 2 * tan(cam->cam.fov / 2);
+		vp[0] = 2 * tan(cam->fov / 2);
 		vp[1] = vp[0] * (float)scene->resol.y / scene->resol.x;
 		w = v_norm(v_scale(cam->normal, -1));
 		u = v_cross(gen_coord(0, 1, 0), w);
 		v = v_cross(w, u);
-		cam->cam.hor = v_scale(u, vp[0]);
-		cam->cam.ver = v_scale(v, vp[1]);
-		cam->cam.llc = v_sub(cam->point, v_scale(cam->cam.hor, 0.5));
-		cam->cam.llc = v_sub(cam->cam.llc, v_scale(cam->cam.ver, 0.5));
-		cam->cam.llc = v_sub(cam->cam.llc, w);
+		cam->hor = v_scale(u, vp[0]);
+		cam->ver = v_scale(v, vp[1]);
+		cam->llc = v_sub(cam->point, v_scale(cam->hor, 0.5));
+		cam->llc = v_sub(cam->llc, v_scale(cam->ver, 0.5));
+		cam->llc = v_sub(cam->llc, w);
 		cam = cam->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 18:17:23 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:17:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void		render_img(t_rt *rt)
 	}
 	if (rt->save == false)
 		mlx_put_image_to_window(rt->mlx, rt->win, rt->img.ptr, 0, 0);
-
 }
 
 static void	init_mlx(t_rt *rt)

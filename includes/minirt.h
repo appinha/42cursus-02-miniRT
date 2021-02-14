@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 18:49:11 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 19:03:58 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void			mlx_put_pixel2img(t_img *img, int x, int y, int colour);
 ** FILE: raytrace.c
 */
 int				raytrace(t_rt *rt, t_ray *ray);
-t_ray			gen_ray(t_elem *cam, float x, float y);
+t_ray			gen_ray(t_cam *cam, float x, float y);
 /*
 ** FILE: hit_1.c
 */
