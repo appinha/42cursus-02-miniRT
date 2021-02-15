@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 21:42:23 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/15 12:45:24 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void			render_img(t_rt *rt, t_cam *cam);
 */
 int				mlx_exit(t_rt *rt);
 int				mlx_deal_key(int keycode, void *param);
+int				expose_hook(t_rt *rt);
 void			mlx_put_pixel2img(t_img *img, int x, int y, int colour);
 /*
 ** FILE: raytrace.c

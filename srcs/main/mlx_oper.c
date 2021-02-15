@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 21:55:15 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/15 12:44:35 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ int			mlx_deal_key(int keycode, void *param)
 	else if (keycode == KEY_CAM_L)
 		cam_change(param, -1);
 	return (0);
+}
+
+int			expose_hook(t_rt *rt)
+{
+	return (mlx_put_image_to_window(rt->mlx, rt->win, rt->scene.cam->img.ptr,
+									0, 0));
 }
 
 void		mlx_put_pixel2img(t_img *img, int x, int y, int colour)

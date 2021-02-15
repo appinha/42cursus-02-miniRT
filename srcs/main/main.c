@@ -6,20 +6,20 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 21:56:03 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/15 12:46:36 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
 #include "minirt.h"
 #include "bitmap.h"
-#include "tests.h"
 
 static void	run_mlx_window(t_rt *rt)
 {
 	ft_printf("%s%s", MSG_WIN_USE_1, MSG_WIN_USE_2);
 	mlx_key_hook(rt->win, mlx_deal_key, rt);
 	mlx_hook(rt->win, DestroyNotify, StructureNotifyMask, mlx_exit, rt);
+	mlx_expose_hook(rt->win, expose_hook, rt);
 	mlx_loop(rt->mlx);
 }
 
