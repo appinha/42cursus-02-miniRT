@@ -14,8 +14,9 @@ A  0.5     255,255,255
 ## (origin point | orientation [-1.0,1.0] | hor. field-of-view in degrees [0,180])
 ## coord            normal            fov
 c  +0.0,+2.0,+4.0   +0.0,-0.25,-1.0   100
-c  +0.0,+1.0,+6.0   +0.0,-0.25,-1.0   100
-c  +0.0,+3.0,+6.0   +0.0,-0.25,-1.0   100
+c  +0.0,+1.5,+6.0   +0.0,-0.25,-1.0   100
+c  +0.0,+3.0,+6.0   +0.0,-0.4,-1.0    100
+c  +3.0,+2.5,+5.0   -0.5,-0.4,-1.0    100
 
 ### LIGHTING
 ## (origin point | brightness [0.0,1.0] | colour in RGB [0,255])
@@ -43,7 +44,8 @@ sq +2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
 ### CYLINDER
 ## (origin point | orientation [-1.0,1.0] | diameter [>0] | height [>0] | colour in RGB [0,255])
 ## coord            normal           diam   height   colour
-cy -2.2,+0.0,+1.2   +0.0,+1.0,+0.0   0.2    3.0      255,204,0
+cy -2.2,+0.0,+1.4   +0.0,+1.0,+0.0   0.4    1.4      255,204,0
+cy +0.8,+0.3,+2.0   +1.0,+0.0,+0.0   0.4    1.0      255,204,0
 
 ### TRIANGLE
 ## (first point | second point | third point | colour in RGB [0,255])
