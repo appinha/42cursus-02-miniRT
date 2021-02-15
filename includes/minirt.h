@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 18:55:22 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:47:53 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 21:42:23 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define MSG_WIN_USE_1	"Awesome! Press right / left keys to change cameras. "
 # define MSG_WIN_USE_2	"Press ESC key or X on the window to exit.\n"
 # define MSG_WIN_QUIT	"Exiting miniRT. À bientôt !\n"
-# define MSG_SAVE_START	"\nBonjour ! Rendering and saving image...\n"
+# define MSG_SAVE_START	"\nBonjour ! Rendering and saving image(s)...\n"
 # define MSG_SAVE_QUIT	"Successfully saved rendered image. À bientôt !\n"
 
 # define EPSILON	0.0001

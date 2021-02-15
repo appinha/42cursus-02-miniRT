@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/11 23:53:20 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:54:00 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 21:56:03 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include "bitmap.h"
 #include "tests.h"
 
-static void	run_mlx_win(t_rt *rt)
+static void	run_mlx_window(t_rt *rt)
 {
+	ft_printf("%s%s", MSG_WIN_USE_1, MSG_WIN_USE_2);
 	mlx_key_hook(rt->win, mlx_deal_key, rt);
 	mlx_hook(rt->win, DestroyNotify, StructureNotifyMask, mlx_exit, rt);
 	mlx_loop(rt->mlx);
@@ -29,12 +30,12 @@ void		render_img(t_rt *rt, t_cam *cam)
 	t_ray	ray;
 	int		colour;
 
-	if (!(cam->img.ptr = mlx_new_image(rt->mlx, rt->size_x, rt->size_x)) ||
+	if (!cam)
+		return ;
+	if (!(cam->img.ptr = mlx_new_image(rt->mlx, rt->size_x, rt->size_y)) ||
 		!(cam->img.addr = mlx_get_data_addr(cam->img.ptr, &cam->img.bpp,
 					&cam->img.size, &cam->img.endian)))
 		error_msg_and_exit(SYSERR);
-	if (!cam)
-		return ;
 	y = -1;
 	while (y++ < (rt->size_y - 1))
 	{
@@ -48,6 +49,31 @@ void		render_img(t_rt *rt, t_cam *cam)
 	}
 	if (rt->save == false)
 		mlx_put_image_to_window(rt->mlx, rt->win, cam->img.ptr, 0, 0);
+}
+
+static void	save_bitmaps(t_rt *rt)
+{
+	t_cam	*cam;
+	char	*filename;
+	char	*aux;
+	int		i;
+
+	cam = rt->scene.cam;
+	i = 1;
+	while (cam)
+	{
+		if (cam->img.ptr == NULL)
+			render_img(rt, cam);
+		aux = ft_itoa(i);
+		filename = ft_strjoin(aux, ".bmp");
+		free(aux);
+		if (export_bitmap(filename, rt->size_x, rt->size_y, cam->img) < 0)
+			error_msg_and_exit(SYSERR);
+		free(filename);
+		cam = cam->next;
+		i++;
+	}
+	mlx_exit(rt);
 }
 
 static void	init_mlx(t_rt *rt)
@@ -85,19 +111,11 @@ int			main(int argc, char *argv[])
 		error_msg_and_exit("003");
 	rt.save = (argc == 3);
 	init_scene(argv[1], &rt.scene);
-	// print_triage_scene_info(&rt.scene);
 	init_mlx(&rt);
 	render_img(&rt, rt.scene.cam);
 	if (rt.save == false)
-	{
-		ft_printf("%s%s", MSG_WIN_USE_1, MSG_WIN_USE_2);
-		run_mlx_win(&rt);
-	}
+		run_mlx_window(&rt);
 	else
-	{
-		if (export_bitmap("image.bmp", rt.size_y, rt.scene.cam->img) < 0)
-			error_msg_and_exit(SYSERR);
-		mlx_exit(&rt);
-	}
+		save_bitmaps(&rt);
 	return (0);
 }

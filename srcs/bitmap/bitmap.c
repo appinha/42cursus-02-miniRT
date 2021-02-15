@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 21:30:07 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 19:54:47 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 22:02:02 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 **
 ** More information: https://en.wikipedia.org/wiki/BMP_file_format
 */
-static int		put_headers(int fd, unsigned int size_x, unsigned int size_y)
+
+static int	put_headers(int fd, unsigned int size_x, unsigned int size_y)
 {
 	t_file_h	fh;
 	t_bmp_h		bh;
@@ -67,12 +68,12 @@ static int		put_headers(int fd, unsigned int size_x, unsigned int size_y)
 	return (ret);
 }
 
-int			export_bitmap(char *filename, int size_y, t_img img)
+int			export_bitmap(char *filename, int size_x, int size_y, t_img img)
 {
 	int		fd;
 
 	fd = open(filename, O_CREAT | O_TRUNC | O_WRONLY, S_IRUSR | S_IWUSR);
-	if (fd < 0 || (put_headers(fd, img.size, size_y)) < 0)
+	if (fd < 0 || (put_headers(fd, size_x, size_y)) < 0)
 		return (-1);
 	while (--size_y >= 0)
 	{

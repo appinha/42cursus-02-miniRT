@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:16:49 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 20:08:15 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/14 21:55:15 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int			mlx_exit(t_rt *rt)
 {
-	if (rt->save == false)
+	if (rt->win)
 	{
 		mlx_clear_window(rt->mlx, rt->win);
 		mlx_destroy_window(rt->mlx, rt->win);
@@ -37,24 +37,23 @@ int			mlx_exit(t_rt *rt)
 
 static void	cam_change(t_rt *rt, int step)
 {
-	t_cam	**cam;
 	t_cam	*cam_orig;
 
-	cam = &(rt->scene.cam);
 	cam_orig = rt->scene.cam;
 	if (step > 0)
-		while (step-- && (*cam)->next)
-			*cam = ((*cam)->next);
+		while (step-- && rt->scene.cam->next)
+			rt->scene.cam = rt->scene.cam->next;
 	else if (step < 0)
-		while (step++ && (*cam)->prev)
-			*cam = ((*cam)->prev);
-	if (*cam != cam_orig)
+		while (step++ && rt->scene.cam->prev)
+			rt->scene.cam = rt->scene.cam->prev;
+	if (rt->scene.cam != cam_orig)
 	{
 		ft_printf("Changing camera... ");
-		if ((*cam)->img.ptr == NULL)
-			render_img(rt, *cam);
+		if (rt->scene.cam->img.ptr == NULL)
+			render_img(rt, rt->scene.cam);
 		else
-			mlx_put_image_to_window(rt->mlx, rt->win, (*cam)->img.ptr, 0, 0);
+			mlx_put_image_to_window(rt->mlx, rt->win, rt->scene.cam->img.ptr,
+									0, 0);
 		ft_printf("Done!\n");
 	}
 	else

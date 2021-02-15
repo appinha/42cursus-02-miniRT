@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/14 18:46:44 by apuchill         ###   ########.fr        #
+#    Updated: 2021/02/14 22:02:35 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,11 +66,12 @@ norm:
 			@$(NORM)
 
 norm2:
-			@$(NORM) */minirt.h */errors.h */scene.h */vectors.h && echo ""
+			@$(NORM) */minirt.h */errors.h */scene.h */vectors.h */bitmap.h && echo ""
 			@$(NORM) srcs/main/*.c && echo ""
 			@$(NORM) srcs/errors/*.c && echo ""
 			@$(NORM) srcs/scene/*.c && echo ""
-			@$(NORM) srcs/vectors/*.c
+			@$(NORM) srcs/vectors/*.c && echo ""
+			@$(NORM) srcs/bitmap/*.c
 
 bonus:		all
 
