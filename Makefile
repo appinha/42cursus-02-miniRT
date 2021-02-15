@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/14 22:02:35 by apuchill         ###   ########.fr        #
+#    Updated: 2021/02/15 12:16:21 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= miniRT
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
-SUBDIRS		= main errors scene vectors bitmap tests
+SUBDIRS		= main errors scene vectors bitmap
 
 SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
@@ -29,22 +29,20 @@ INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-#CFLAGS		=
 RM			= /bin/rm -f
 NORM		= ~/.norminette/norminette.rb
-
 
 $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
 			@mkdir -p $(DIR_OBJS) $(OBJS_DIRS)
 			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-all:		$(NAME)
+$(LIBFT):
+			@make -C $(LIBFT_DIR)
 
 $(NAME):	$(OBJS) $(LIBFT)
 			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIB_FLAGS)
 
-$(LIBFT):
-			@make -C $(LIBFT_DIR)
+all:		$(NAME)
 
 clean:
 			@make clean -C $(LIBFT_DIR)
@@ -63,7 +61,7 @@ rt:			tests all
 			./minirt "scenes/test.rt"
 
 norm:
-			@$(NORM)
+			@$(NORM) */*.h */*/*.h */*/*.c */*/*/*.c
 
 norm2:
 			@$(NORM) */minirt.h */errors.h */scene.h */vectors.h */bitmap.h && echo ""
@@ -73,8 +71,4 @@ norm2:
 			@$(NORM) srcs/vectors/*.c && echo ""
 			@$(NORM) srcs/bitmap/*.c
 
-bonus:		all
-
-rebonus:	fclean bonus
-
-.PHONY:		all clean fclean re bonus rebonus tests rt
+.PHONY:		all clean fclean re tests rt
