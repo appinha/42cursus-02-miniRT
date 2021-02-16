@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/15 12:16:21 by apuchill         ###   ########.fr        #
+#    Updated: 2021/02/16 13:51:39 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ tests:
 			@$(RM) $(OBJS) $(NAME)
 
 rt:			tests all
-			./minirt "scenes/test.rt"
+			./minirt "scenes/base_file.rt"
 
 norm:
 			@$(NORM) */*.h */*/*.h */*/*.c */*/*/*.c

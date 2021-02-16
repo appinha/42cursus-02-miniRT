@@ -1,0 +1,52 @@
+### RESOLUTION
+## (width [>0] | height [>0])
+## size x   size y
+R  800      600
+# R  80       60
+# R  2        2
+
+### AMBIENT LIGHTING
+## (intensity [0.0,1.0] | colour in RGB [0,255])
+## ratio   colour
+A  0.5     255,255,255
+
+### CAMERAS
+## (origin point | orientation [-1.0,1.0] | hor. field-of-view in degrees [0,180])
+## coord            normal            fov
+c  +0.0,+2.0,+4.0   +0.0,-0.25,-1.0   100
+c  +0.0,+1.5,+6.0   +0.0,-0.25,-1.0   100
+c  +0.0,+3.0,+6.0   +0.0,-0.4,-1.0    100
+c  +3.0,+2.5,+5.0   -0.5,-0.4,-1.0    100
+
+### LIGHTING
+## (origin point | brightness [0.0,1.0] | colour in RGB [0,255])
+## coord            ratio   colour
+l  +0.0,+4.0,+3.0   0.1     255,255,255
+
+### SPHERE
+## (origin point | diameter [>0] | colour in RGB [0,255])
+## coord            diam   colour
+sp +0.0,+1.1,+0.0   2.0    216,56,136
+
+### PLANE
+## (origin point | orientation [-1.0,1.0] | colour in RGB [0,255])
+## coord            normal           colour
+pl +0.0,+0.0,+0.0   +0.0,+1.0,+0.0   140,118,206
+
+### SQUARE
+## (origin point | orientation [-1.0,1.0] | side size [>0] | colour in RGB [0,255])
+## coord            normal           size   colour
+sq -2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
+sq +0.0,+3.0,-1.0   +0.0,+1.0,+0.0   4.0    0,176,240
+sq +2.0,+1.0,-1.0   +1.0,+0.0,+0.0   4.0    0,176,240
+
+### CYLINDER
+## (origin point | orientation [-1.0,1.0] | diameter [>0] | height [>0] | colour in RGB [0,255])
+## coord            normal           diam   height   colour
+cy -2.2,+0.0,+1.4   +0.0,+1.0,+0.0   0.4    1.4      255,204,0
+cy +0.8,+0.3,+2.0   +1.0,+0.0,+0.0   0.4    1.0      255,204,0
+
+### TRIANGLE
+## (first point | second point | third point | colour in RGB [0,255])
+## p1               p2               p3               colour
+tr -2.0,+0.2,+1.0   +2.0,+0.2,+1.0   +0.0,+0.1,-4.0   68,194,164
