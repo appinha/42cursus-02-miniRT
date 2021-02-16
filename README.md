@@ -16,11 +16,13 @@ For further information about **42cursus** and this project, please refer to [42
 
 * **files in root:** source code developed for the project.
 
-Note: files contain both mandatory and (all ?) bonus requirements.
+Note: files contain only mandatory requirements.
 
 For extensive documentation on the source code, please refer to the [projects' folder](https://github.com/appinha/42cursus/tree/master/02-minirt) in the 42cursus repo.
 
-## Install MiniLibX
+## Usage
+
+### Installing MiniLibX
 
 ```
 sudo apt-get install -y libxext-dev && sudo apt-get install -y libxrandr-dev && sudo apt-get install -y libx11-dev && sudo apt-get install -y libbsd-dev && sudo apt-get install -y libssl-dev
@@ -34,6 +36,19 @@ sudo cp man/man1/* /usr/local/man/man1/ && sudo cp libmlx.a /usr/local/lib/ && s
 
 * To show MiniLibX 's manual page: `man mlx`
 * To compile: `clang -Wall -Wextra -Werror main.c -lbsd -lmlx -lXext -lX11`
+
+### Compilation
+
+```shell
+make
+```
+
+### Execution
+
+```shell
+./miniRT <scene-file.rt>
+./miniRT <scene-file.rt> --save
+```
 
 ## Useful Links
 
