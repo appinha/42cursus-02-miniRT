@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:09:42 by apuchill          #+#    #+#             */
-/*   Updated: 2021/02/14 17:43:14 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/16 12:07:44 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	print_error_msg(char *code)
 void		error_msg_and_exit(char *code)
 {
 	if (errno && ft_strcmp(code, SYSERR) == 0)
-		perror("\033[1m\033[38;5;199mSystem error\033[0m\n");
+		perror("\033[1m\033[38;5;199mSystem error\033[0m");
 	else if (code != SYSERR)
 		print_error_msg(code);
 	else
