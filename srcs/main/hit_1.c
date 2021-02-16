@@ -6,7 +6,7 @@
 /*   By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:55:48 by appinha           #+#    #+#             */
-/*   Updated: 2021/02/14 19:35:21 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/02/15 17:49:18 by apuchill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool			hit_sp(t_ray *ray, t_elem *elem)
 
 	v_sp2ray = v_sub(ray->p_ori, elem->point);
 	bhaskara(v_len_sqr(ray->v_dir), 2 * v_dot(ray->v_dir, v_sp2ray),
-				v_dot(v_sp2ray, v_sp2ray) - 1, time);
+				v_dot(v_sp2ray, v_sp2ray) - pow(elem->diam / 2, 2), time);
 	if (ray->hit.time > time[0] && time[0] > 0)
 	{
 		ray->hit.time = time[0];
