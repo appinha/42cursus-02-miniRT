@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/16 13:51:39 by apuchill         ###   ########.fr        #
+#    Updated: 2021/02/16 14:49:52 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,12 @@ OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 LIBFT		= $(LIBFT_DIR)libft.a
 LIBFT_DIR	= libft/
 LIB_FLAGS	= -L $(LIBFT_DIR) -lft
-MLX_FLAGS	= -lbsd -lmlx -lXext -lX11
+MLX_FLAGS	= -lbsd -lmlx -lXext -lX11 -lm
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 CC			= clang
-CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror
 RM			= /bin/rm -f
 NORM		= ~/.norminette/norminette.rb
 
@@ -36,13 +37,13 @@ $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
 			@mkdir -p $(DIR_OBJS) $(OBJS_DIRS)
 			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+all:		$(NAME)
+
 $(LIBFT):
 			@make -C $(LIBFT_DIR)
 
 $(NAME):	$(OBJS) $(LIBFT)
 			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIB_FLAGS)
-
-all:		$(NAME)
 
 clean:
 			@make clean -C $(LIBFT_DIR)
@@ -71,4 +72,4 @@ norm2:
 			@$(NORM) srcs/vectors/*.c && echo ""
 			@$(NORM) srcs/bitmap/*.c
 
-.PHONY:		all clean fclean re tests rt
+.PHONY:		all clean fclean re tests rt norm norm2
