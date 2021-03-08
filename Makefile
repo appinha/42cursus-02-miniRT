@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/03/07 21:03:20 by apuchill         ###   ########.fr        #
+#    Updated: 2021/03/07 21:44:44 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ MLX_FLAGS	= -lbsd -lmlx -lXext -lX11 -lm
 INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
 
 CC			= clang
-# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS		= -Wall -Wextra -Werror
+# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 RM			= /bin/rm -f
 NORM		= ~/.norminette/norminette.rb
 
@@ -55,15 +55,19 @@ fclean:		clean
 
 re:			fclean all
 
+.PHONY:		tests
 tests:
 			@$(RM) $(OBJS) $(NAME)
 
+.PHONY:		rt
 rt:			tests all
-			./minirt "scenes/wolf.rt"
+			./minirt "scenes/base_file.rt"
 
+.PHONY:		norm
 norm:
 			@$(NORM) */*.h */*/*.h */*/*.c */*/*/*.c
 
+.PHONY:		norm2
 norm2:
 			@$(NORM) */minirt.h */errors.h */scene.h */vectors.h */bitmap.h && echo ""
 			@$(NORM) srcs/main/*.c && echo ""
