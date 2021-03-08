@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/16 14:49:52 by apuchill         ###   ########.fr        #
+#    Updated: 2021/03/07 21:03:20 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,17 +40,17 @@ $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
 all:		$(NAME)
 
 $(LIBFT):
-			@make -C $(LIBFT_DIR)
+			@make --no-print-directory -C $(LIBFT_DIR)
 
 $(NAME):	$(OBJS) $(LIBFT)
 			@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIB_FLAGS)
 
 clean:
-			@make clean -C $(LIBFT_DIR)
+			@make clean --no-print-directory -C $(LIBFT_DIR)
 			@$(RM) $(OBJS)
 
 fclean:		clean
-			@make fclean -C $(LIBFT_DIR)
+			@make fclean --no-print-directory -C $(LIBFT_DIR)
 			@$(RM) $(NAME)
 
 re:			fclean all
@@ -59,7 +59,7 @@ tests:
 			@$(RM) $(OBJS) $(NAME)
 
 rt:			tests all
-			./minirt "scenes/base_file.rt"
+			./minirt "scenes/wolf.rt"
 
 norm:
 			@$(NORM) */*.h */*/*.h */*/*.c */*/*/*.c
