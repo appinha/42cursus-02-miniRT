@@ -6,7 +6,7 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/24 20:15:20 by apuchill          #+#    #+#              #
-#    Updated: 2021/02/07 09:27:02 by apuchill         ###   ########.fr        #
+#    Updated: 2021/03/07 13:59:14 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ clean:
 
 fclean:		clean
 			@$(RM) $(NAME)
+			@$(RM) -r $(DIR_OBJS)
 
 re:			fclean all
 
