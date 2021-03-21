@@ -6,11 +6,24 @@
 #    By: apuchill <apuchill@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/08 15:21:34 by apuchill          #+#    #+#              #
-#    Updated: 2021/03/07 21:44:44 by apuchill         ###   ########.fr        #
+#    Updated: 2021/03/21 15:32:58 by apuchill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= miniRT
+
+MLX_FLAGS	= -lbsd -lmlx -lXext -lX11 -lm
+INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
+
+LIBFT		= $(LIBFT_DIR)libft.a
+LIBFT_DIR	= libft/
+LIB_FLAGS	= -L $(LIBFT_DIR) -lft
+
+CC			= clang
+CFLAGS		= -Wall -Wextra -Werror
+# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+RM			= /bin/rm -f
+NORM		= ~/.norminette/norminette.rb
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
@@ -20,18 +33,6 @@ SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
 SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
 OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
-
-LIBFT		= $(LIBFT_DIR)libft.a
-LIBFT_DIR	= libft/
-LIB_FLAGS	= -L $(LIBFT_DIR) -lft
-MLX_FLAGS	= -lbsd -lmlx -lXext -lX11 -lm
-INCLUDES	= -I includes -I $(LIBFT_DIR)/includes/
-
-CC			= clang
-CFLAGS		= -Wall -Wextra -Werror
-# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-RM			= /bin/rm -f
-NORM		= ~/.norminette/norminette.rb
 
 $(DIR_OBJS)/%.o :	$(DIR_SRCS)/%.c
 			@mkdir -p $(DIR_OBJS) $(OBJS_DIRS)
@@ -48,6 +49,7 @@ $(NAME):	$(OBJS) $(LIBFT)
 clean:
 			@make clean --no-print-directory -C $(LIBFT_DIR)
 			@$(RM) $(OBJS)
+			@$(RM) -r $(DIR_OBJS)
 
 fclean:		clean
 			@make fclean --no-print-directory -C $(LIBFT_DIR)
@@ -55,12 +57,14 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		tests
-tests:
+.PHONY:		all clean fclean re
+
+.PHONY:		reset
+reset:
 			@$(RM) $(OBJS) $(NAME)
 
 .PHONY:		rt
-rt:			tests all
+rt:			reset all
 			./minirt "scenes/base_file.rt"
 
 .PHONY:		norm
@@ -75,5 +79,3 @@ norm2:
 			@$(NORM) srcs/scene/*.c && echo ""
 			@$(NORM) srcs/vectors/*.c && echo ""
 			@$(NORM) srcs/bitmap/*.c
-
-.PHONY:		all clean fclean re tests rt norm norm2
