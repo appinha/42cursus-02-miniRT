@@ -169,4 +169,6 @@ _Many thanks to [@aroque](https://github.com/AdrianWR) for making these scene fi
 
 * [42Paris/minilibx-linux](https://github.com/42Paris/minilibx-linux)
 * [Tutorial on MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx)
+* [Ray Tracing in One Weekend by Peter Shirley](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
+* [Ray Tracing in One Weekend — The Book Series](https://raytracing.github.io/)
 * [Useful links and info by lcouto et al](https://www.notion.so/miniRT-5f6fcdf6d05e4742b6c38f0588f12436)
